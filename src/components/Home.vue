@@ -1,7 +1,7 @@
 <template>
     <div id="div-home">
         <div id="div-bienvenida">
-            <h1>Bienvenido a r-store</h1>
+            <h1>Bienvenido</h1>
             <p>{{ respuestaApi }}</p>
         </div>
     </div>
@@ -20,6 +20,7 @@ export default {
         llamarAPI: function() {
             axios
             .get("http://localhost:8000")
+            //.get("https://api-albastore.herokuapp.com")
             .then(respuesta => {
                 this.respuestaApi = respuesta.data.mensaje;
             })
@@ -37,8 +38,6 @@ export default {
 
 <style scoped>
 #div-home {
-    width: 100vw;
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
