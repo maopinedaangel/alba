@@ -5,11 +5,14 @@
     </div>
     <div id="div-main">
 		<div id="div-side-menu">
-			<div class="bt-options" v-on:click="showPatients">
+			<!--<div class="bt-options" v-on:click="showPatients">-->
+			<router-link class="bt-options" :to="{name:'Patients'}">				
                 <div class="div-icon">
                     <icon-base class="icon-menu" id="ic-login" icon-name="login"><icon-login /></icon-base>                 
                 </div> 				
-				Pacientes</div>
+				Pacientes
+			<!--</div>-->
+			</router-link>
 			<div class="bt-options">Especialistas</div>
 			<div class="bt-options">Documentos</div>
 			<div class="bt-options">Reportes</div>
@@ -76,7 +79,8 @@ export default {
 	color: var(--clr-light-background);
 }
 .bt-options {
-	background-color: var(--clr-side-menu);
+	background-color: var(--clr-header);
+	color: var(--clr-background);	
 	height: 20%;
 	width: 100%;
 	text-align: center;
@@ -85,10 +89,11 @@ export default {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	text-decoration: none;
 }
 .bt-options:hover {
 	cursor: pointer;
-	background-color: var(--clr-buttons);
+	background-color: var(--clr-side-menu);
 }
 .div-icon {
 	width: 40px;

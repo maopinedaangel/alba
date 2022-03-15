@@ -2,7 +2,7 @@
     <div id="div-home">
         <div id="div-bienvenida">
             <h1>Bienvenido</h1>
-            <p>{{ respuestaApi }}</p>
+            <p>{{ apiResponse }}</p>
         </div>
     </div>
 </template>
@@ -13,24 +13,26 @@ export default {
     name: 'Home',
     data: function() {
         return {
-            respuestaApi: ""
+            apiResponse: ""
         }
     },
     methods: {
-        llamarAPI: function() {
+        callAPI: function() {
+            let url = this.$store.state.apiUrl
             axios
-            .get("http://localhost:8000")
+            .get(url)
+            //.get("http://localhost:8000")
             //.get("https://api-albastore.herokuapp.com")
-            .then(respuesta => {
-                this.respuestaApi = respuesta.data.mensaje;
+            .then(response => {
+                this.apiResponse = response.data.mensaje;
             })
             .catch(error => {
-                this.respuestaApi = "No hay conexión con la API"
+                this.apiResponse = "No hay conexión con la API"
             })
         }
     },
     created: function() {
-        this.llamarAPI();
+        this.callAPI();
     }
 }
 </script>

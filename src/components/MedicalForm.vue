@@ -462,7 +462,74 @@
 
         <!--Tratamiento sugerido y justificación-->
         <section id="sec-suggested-treatment">
+            <h4>Tratamiento sugerido y justificación</h4>
 
+            <label>
+                <input type="checkbox">Terapia individual
+            </label>
+            <label>
+                <input type="checkbox">Terapia grupal
+            </label>
+            <label>
+                <input type="checkbox">Terapia familiar
+            </label>
+            <label>
+                <input type="checkbox">Orientación familiar grupal
+            </label>
+            <label>
+                <input type="checkbox">Orientación familiar individual
+            </label>
+            <label>
+                <input type="checkbox">Frecuencia de tratamiento
+            </label>
+
+            <label>Justificación</label>
+            <textarea required></textarea><br>
+
+            <label>Plan de manejo físico (si se necesitan medicamentos, deberá señalar dosis, vía y periodicidad)</label>
+            <textarea required></textarea><br>
+
+            <label>Sugerencias en el plan de manejo psicológico</label>
+            <textarea required></textarea><br>
+
+            <div class="form-line">
+                <!--Próxima cita-->                
+                <div class="form-field">
+                    <!--Fecha de la p´roxima ciota-->
+                    <label for="inp-next-appointment-date">Día:</label>
+                    <input name="inp-next-appointment-date" type="date"> 
+                </div>
+                <div class="form-field">
+                    <!--Hora de la próxima cita-->
+                    <label for="inp-next-appointment-hour">Hora:</label>
+                    <input name="inp-next-appointment-hour" type="time"> 
+                </div>
+                <div class="form-field">
+                    <!--Servicio-->
+                    <label for="inp-service">Servicio:</label>
+                    <input name="inp-service" type="text" required> 
+                </div>
+                <div class="form-field">
+                    <!--Responsable-->
+                    <label for="inp-responsible">Responsable:</label>
+                    <input name="inp-responsible" type="text" required> 
+                </div>                                
+            </div>        
+            <div class="form-line">
+                <!--Médico que otorgó el servicio-->                
+                <div class="form-field">
+                    <label for="inp-doctor">Nombre completo y firma del profesional que otorgó el servicio:</label>
+                    <input name="inp-doctor" type="text"> 
+                </div>
+                <div class="form-field">
+                    <label for="inp-doctor-card">Número Cédula Profesional:</label>
+                    <input name="inp-doctor-card" type="text"> 
+                </div>
+                <div class="form-field">
+                    <label for="inp-form-hour">Hora:</label>
+                    <input name="inp-form-hour" type="time"> 
+                </div> 
+            </div>                               
         </section>        
     </div>
 </template>

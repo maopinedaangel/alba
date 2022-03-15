@@ -20,8 +20,9 @@
         <div id="div-forms">
             <h3>Formatos</h3>
             <ul>
-                <li><router-link :to="{ name: 'EntryRecord' }">Hoja de Ingreso</router-link></li>                
-                <li>Estudio Socio-Económico</li>                              
+                <!--<li><router-link :to="{ name: 'EntryRecord',  params: { id: this.patientId }} ">Hoja de Ingreso</router-link></li>-->
+                <li><router-link :to="{ name: 'EntryRecord',  params: { patientdata: this.patient, representativedata: this.representative }} ">Hoja de Ingreso</router-link></li>                              
+                <li><router-link :to="{ name: 'SocioeconomicForm', params: { patientdata: this.patient, representativedata: this.representative }}">Estudio Socio-Económico</router-link></li>                                              
                 <li><router-link :to="{ name: 'MedicalForm' }">Examen Médico de Ingreso</router-link></li>
                 <li>Nota de Evolución Médica</li>
                 <li>Historia Clínica Psicológica</li>
@@ -34,18 +35,24 @@
 
 <script>
 import Collapsible from './Collapsible.vue'
+import axios from 'axios'
 export default {
     name: 'Treatment',
     components: {
         Collapsible
     },
+    props: ['id'],
     data: function() {
         return {
             medicals: [],
             tests: [],
             orders: [],
-            bills: []
+            bills: [],
+            patientId: this.id,
+            patient: "",
+            representative: ""
         }
+
     },
     created: function() {
         this.medicals = [
@@ -85,6 +92,31 @@ export default {
                 amount: 12
             }
         ]
+        console.log(`id del paciente: ${this.patientId}`)
+        let url = this.$store.state.apiUrl
+        url += "/patient-data/" + this.patientId
+        axios
+        //.get("http://localhost:8000/patient-data/" + this.patientId)
+        .get(url)
+        .then(response => {
+            this.patient = response.data
+        })
+        .catch(err => {
+            alert("No se encuentra el paciente.")
+        }) 
+
+        url = this.$store.state.apiUrl
+        url += "/representative-data/" + this.patientId
+        //.get("http://localhost:8000/representative-data/" + this.patientId)
+        axios        
+        .get(url)
+        .then(response => {
+            this.representative = response.data
+            console.log(`Representante: ${this.representative}`)
+        })
+        .catch(err => {
+            alert("No se encuentra el representante.")
+        }) 
     }
 }
 </script>

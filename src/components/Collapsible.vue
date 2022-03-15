@@ -32,22 +32,11 @@ export default {
     },
     methods: {
         showContent: function() {
-            /*
-            this.classList.toggle("active");
-            let content = element.nextElementSibling;
-            let content = document.getElementsByClassName("content")[0];            
-            if (content.style.display === "block") {
-                content.style.display = "none";
-            } else {
-                content.style.display = "block";
-            }  
-            */
            if (this.isContentVisible) {
                this.isContentVisible = false;
            } else {
                this.isContentVisible = true
            }
-           //this.isContentVisible = !this.isContentVisible;
         }
     }
 }
