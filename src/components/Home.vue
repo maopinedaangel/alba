@@ -21,8 +21,6 @@ export default {
             let url = this.$store.state.apiUrl
             axios
             .get(url)
-            //.get("http://localhost:8000")
-            //.get("https://api-albastore.herokuapp.com")
             .then(response => {
                 this.apiResponse = response.data.mensaje;
             })

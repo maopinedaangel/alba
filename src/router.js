@@ -7,6 +7,7 @@ import MedicalForm from './components/MedicalForm'
 import EntryRecord from './components/EntryRecord'
 import NewPatient from './components/NewPatient'
 import SocioeconomicForm from './components/SocioeconomicForm'
+import Login from './components/Login'
 
 const router = new vueRouter({
     mode: 'history',
@@ -17,6 +18,11 @@ const router = new vueRouter({
             path: '/',
             name: "Home",
             component: Home
+        },
+        {
+            path: '/login',
+            name: "Login",
+            component: Login
         },
         {
             path: '/patients',

@@ -1,22 +1,44 @@
 <template>
   <div id="app">
     <div id="div-header">
-		<div id="div-login">Acceder</div>
+		<!--<div id="div-login">-->
+		<router-link id="div-login" :to="{name:'Login'}">			
+			<div>
+				Acceder
+			</div>
+		</router-link>
+		<!--</div>	-->	
     </div>
     <div id="div-main">
 		<div id="div-side-menu">
 			<!--<div class="bt-options" v-on:click="showPatients">-->
 			<router-link class="bt-options" :to="{name:'Patients'}">				
                 <div class="div-icon">
-                    <icon-base class="icon-menu" id="ic-login" icon-name="login"><icon-login /></icon-base>                 
-                </div> 				
+                    <icon-base class="icon-menu" id="ic-man" icon-name="man"><icon-man /></icon-base>
+                </div>				 				
 				Pacientes
 			<!--</div>-->
 			</router-link>
-			<div class="bt-options">Especialistas</div>
-			<div class="bt-options">Documentos</div>
-			<div class="bt-options">Reportes</div>
-			<div class="bt-options">Usuarios</div>
+			<div class="bt-options">
+                <div class="div-icon">
+                    <icon-base class="icon-menu" id="ic-doctor" icon-name="doctor"><icon-doctor /></icon-base>
+                </div>				
+				Especialistas</div>
+			<div class="bt-options">
+                <div class="div-icon">
+                    <icon-base class="icon-menu" id="ic-file" icon-name="file"><icon-file /></icon-base>
+                </div>				
+				Documentos</div>
+			<div class="bt-options">
+                <div class="div-icon">
+                    <icon-base class="icon-menu" id="ic-report" icon-name="report"><icon-report /></icon-base>
+                </div>				
+				Reportes</div>
+			<div class="bt-options">
+                <div class="div-icon">
+                    <icon-base class="icon-menu" id="ic-login" icon-name="login"><icon-login /></icon-base>                 
+                </div>				
+				Usuarios</div>
 		</div>
 		<div id="div-center">
 			<router-view :key="$route.fullPath"></router-view>
@@ -30,21 +52,30 @@
 import Home from "./components/Home.vue";
 import IconBase from './components/IconBase.vue'
 import IconLogin from './components/icons/IconLogin.vue'
+import IconDoctor from './components/icons/IconDoctor.vue'
+import IconFile from './components/icons/IconFile.vue'
+import IconReport from './components/icons/IconReport.vue'
+import IconMan from './components/icons/IconMan.vue'
 
 export default {
 	name: "App",
 	components: {
 		Home,
 		IconBase,
-		IconLogin
+		IconLogin,
+		IconDoctor,
+		IconFile,
+		IconReport,
+		IconMan
 	},
 	methods: {
 		showPatients: function() {
-    	this.$router.push( { name: "Patients" })  
+    		this.$router.push( { name: "Patients" })  
 		}
 	},
 	beforeCreate: function() {
-    	this.$router.push( { name: "Home" })  		
+    	//this.$router.push( { name: "Home" })
+    	this.$router.push( { name: "Patients" }) 		  		
 	}
 
 };
@@ -55,11 +86,6 @@ export default {
 	width: 100vw;
 	height: 100vh;
 	font-family: "Avenir", Helvetica, Arial, sans-serif;
-	/*-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	text-align: center;
-	color: #2c3e50;
-	margin-top: 60px;*/
 }
 #div-header {
 	height: 10vh;
@@ -68,7 +94,16 @@ export default {
 	display: flex;
 	justify-content: flex-end;
 }
-
+#div-login {
+	display: flex;
+	align-items: center;
+	margin-right: 1vw;
+	cursor: pointer;
+	color: #ffffff;
+}
+#div-login a {
+	text-decoration: none;
+}
 #div-main {
 	display: flex;
 	height: 90vh;
