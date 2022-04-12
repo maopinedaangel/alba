@@ -40,8 +40,6 @@
                         <div class="form-field">
                             <!--Nombre del paciente-->
                             <label for="inp-name">Nombre del Paciente:</label>
-                            <!--<input name="inp-name" type="text"  v-model="patient.firstName" required>-->
-                            <!--<input name="inp-name" type="text"  v-model="patientName" disabled>-->
                             <input name="inp-name" type="text"  v-model="entryForm.patient.name" disabled>                                             
                         </div>
 
@@ -52,14 +50,12 @@
                         <div class="form-field">
                             <!--Fecha de nacimiento del paciente-->
                             <label for="inp-birthdat">Fecha de nacimiento:</label>
-                            <!--<input name="inp-birthday" type="text" v-model="patient.birthday" disabled>-->
                             <input name="inp-birthday" type="text" v-model="entryForm.patient.birthday" disabled>                      
                         </div>
 
                         <div class="form-field">
                             <!--Edad-->     
                             <label for="inp-age">Edad:</label>
-                            <!--<input name="inp-age" type="number" v-model="patientAge" disabled>-->
                             <input name="inp-age" type="number" v-model="entryForm.patient.age" disabled>                        
                         </div>
 
@@ -67,13 +63,6 @@
                             <!--Sexo-->
                             <label for="inp-sex">Sexo:</label>
                             <input name="inp-sex" type="text" v-model="entryForm.patient.sex" disabled>
-                            <!--
-                            <select name="sel-sex" id="sel-sex" required>
-                                <option value="Hombre">Hombre</option>
-                                <option value="Mujer">Mujer</option>
-                                <option value="Otro">Otro</option>
-                            </select>
-                            -->
                         </div>
 
                     </div>
@@ -93,7 +82,6 @@
                         <div class="form-field">
                             <!--Teléfono-->
                             <label for="inp-phone">Teléfono:</label>
-                            <!--<input name="inp-phone" type="text" v-model="entryForm.patient.phones[0]" disabled>-->
                             <input name="inp-phone" type="text" v-model="entryForm.patient.phone" disabled>                       
                         </div>                
 
@@ -111,14 +99,7 @@
                         <div class="form-field">
                             <!--Estado civil-->
                             <label for="inp-civil-status">Estado Civil:</label>
-                            <!--<input name="inp-civil-status" type="text" required>-->
-                            <select name="sel-civil-status" id="sel-civil-status" v-model="entryForm.patient.civilState" disabled>
-                                <option value="Soltero">Soltero</option>
-                                <option value="Casado">Casado</option>
-                                <option value="Unión libre">Unión libre</option>
-                                <option value="Divorciado">Divorciado</option>
-                                <option value="Viudo">Viudo</option>
-                            </select>
+                            <input name="inp-civil-status" type="text" v-model="entryForm.patient.civilState" disabled>
                         </div>
 
                     </div>
@@ -129,16 +110,6 @@
                             <!--Escolaridad-->
                             <label for="inp-school-grade">Escolaridad:</label>
                             <input name="inp-school-grade" type="text" v-model="entryForm.patient.schoolGrade" disabled>
-                            <!--
-                            <select name="sel-school-grade" id="sel-school-grade">
-                                <option value="ninguna">Ninguna</option>
-                                <option value="primaria">Primaria</option>
-                                <option value="secundaria">Secundaria</option>
-                                <option value="bachillerato">Bachillerato</option>
-                                <option value="licenciatura">Licenciatura</option>
-                                <option value="posgrado">Posgrado</option>                        
-                            </select>
-                            -->
                         </div>                
 
 
@@ -146,16 +117,6 @@
                             <!--Ocupación-->
                             <label for="inp-occupation">Ocupación:</label>
                             <input name="inp-occupation" type="text" v-model="entryForm.patient.occupation" disabled>
-                            <!--
-                            <select name="sel-occupation" id="sel-occupation">
-                                <option value="empleado-formal">Empleado Formal</option>
-                                <option value="empleado-informal">Empleado Informal</option>
-                                <option value="desempleado">Desempleado</option>
-                                <option value="profesionaista">Profesionista</option>
-                                <option value="independiente">Independiente</option>
-                                <option value="oficios-varios">Oficios Varios</option>
-                            </select>
-                            -->
                         </div>
 
                     </div>
@@ -163,11 +124,10 @@
 
                     <div class="form-line">
                         <div class="form-field-triple">
+                        <!--Ingresos previos-->                            
                             <label for="inp-previous-entries">¿Cuántos ingresos previos ha tenido al establecimiento?</label>
                             <input name="inp-previous-entries" type="text" v-model="entryForm.previousEntries" disabled>
                         </div>
-                        <!--Ingresos previos-->
-
                     </div>
 
 
@@ -175,7 +135,6 @@
                         <div class="form-field-double">
                             <!--Fecha(s):-->
                             <label for="inp-prev-dates">Fechas:</label>
-                            <!--<input name="inp-prev-dates" type="text" disabled>-->
                             <ul>
                                 <li v-for="(date, k) in entryForm.dates" :key="k">{{ date }}</li>
                             </ul>
@@ -187,16 +146,6 @@
 
                     <div class="form-line">
                         <div class="form-field-double">
-                            <!--Es referido:-->
-                            <!--
-                            <label for="inp-is-referred">¿Lo refiere alguna institución?</label>
-                            <input name="inp-is-referred" type="text" v-model="entryForm.isReferred" required>
-                            -->
-                            <!--
-                            <label>
-                                <input type="checkbox" v-model="entryForm.isReferred">¿Lo refiere alguna institución?
-                            </label>
-                            -->
                             <label for="sel-is-referred">¿Lo refiere alguna institución?</label>
                             <select id="sel-referred-by" v-model="entryForm.isReferred">
                                 <option value="Sí">Sí</option>
@@ -213,10 +162,6 @@
 
                     <div class="form-line">
                         <div class="form-field-double">
-                            <!--
-                            <label for="inp-has-reference-sheet">¿Presenta hoja de referencia?</label>
-                            <input name="inp-has-reference-sheet" type="text" v-model="entryForm.hasReferenceSheet" required>
-                            -->
                             <label for="sel-has-reference-sheet">¿Presenta hoja de referencia?</label>
                             <select id="sel-has-reference-sheet" v-model="entryForm.hasReferenceSheet">
                                 <option value="Sí">Sí</option>
@@ -231,7 +176,6 @@
                         <div class="form-field">
                             <!--Tipo de ingreso:-->                    
                             <label for="inp-entry-type">Tipo de ingreso actual:</label>
-                            <!--<input name="inp-entry-type" type="text" required>-->
                             <select name="sel-entry-type" id="sel-entry-type" v-model="entryForm.entryType">
                                 <option value="voluntario">Voluntario</option>
                                 <option value="involuntario">Involuntario</option>
@@ -273,7 +217,6 @@
                         <div class="form-field">
                             <!--Nombre del representante-->
                             <label for="inp-representative-name">Nombre:</label>
-                            <!--<input name="inp-representative-name" type="text" v-model="representativeName" disabled>-->
                             <input name="inp-representative-name" type="text" v-model="entryForm.representative.name" disabled>                        
                         </div>
 
@@ -284,7 +227,6 @@
                         <div class="form-field">
                             <!--Edad-->     
                             <label for="inp-representative-age">Edad:</label>
-                            <!--<input name="inp-representative-age" type="number" v-model="representativeAge" disabled>-->
                             <input name="inp-representative-age" type="number" v-model="entryForm.representative.age" disabled>                        
                         </div>
 
@@ -317,7 +259,6 @@
                         <div class="form-field-full-line">
                             <!--Teléfono-->
                             <label for="inp-representative-phone">Teléfono:</label>
-                            <!--<input name="inp-representative-phone" type="text" v-model="entryForm.representative.phones[0]" disabled>-->
                             <input name="inp-representative-phone" type="text" v-model="entryForm.representative.phone" disabled>                        
                         </div>                
                     </div>
@@ -325,6 +266,7 @@
                 </section>
 
                 <section class="form-section" id="sec-acceptance-criteria">
+                    <!--Criterios de inclusión al tratamiento-->
                     <h3>Criterios de inclusión al tratamiento</h3>
                     <div class="form-line">
                         <div class="form-field-full-line">
@@ -411,24 +353,15 @@ import axios from 'axios'
 import utils from '../utils.js'
 export default {
     name: 'EntryRecord',
-    props: ['id', 'existing', 'idForm', 'treatmentId', 'patientdata', 'representativedata'],
+    //props: ['id', 'existing', 'idForm', 'treatmentId', 'patientdata', 'representativedata'],
+    props: ['id', 'existing', 'idForm', 'treatmentId'],    
     data: function() {
         return {
             formId: this.idForm,
-            //meetsCriteria: "",
             loaded: false,
-            //treatmentId: "",
             userId: "",
-            today: "",
-            hour: "",
             patient: "",
-            representative: "",            
-            //patient: this.patientdata,
-            //representative: this.representativedata,
-            patientName: "",
-            patientAge: "",
-            patientAddress: "",
-            representativeName: "",
+            representative: "",
             isExisting: this.existing,
             previousEntries: [],
             entryForm: {
@@ -436,7 +369,6 @@ export default {
                 patient: {
                     id: "",
                     dni: "",
-                    //mail: "",
                     name: "",
                     birthday: "",
                     age: "",
@@ -527,7 +459,6 @@ export default {
             return axios.get(url);
         },
         loadPatientData: function() {
-
             this.entryForm.patient.id = this.patient.patientId
             this.entryForm.patient.dni = this.patient.dni
             this.entryForm.patient.name = `${this.patient.firstName} ${this.patient.lastName}`           
@@ -585,18 +516,7 @@ export default {
             axios
             .get(url)
             .then( response => {
-                /*
-                let respuesta = response.data;
-                console.log(respuesta.id);
-                let formulario = respuesta.data;
-                console.log(formulario);
-                console.log(typeof(formulario));
-                let objeto = JSON.parse(formulario);
-                console.log(objeto);
-                console.log(typeof(objeto));
-                */
                 this.entryForm = response.data.data;
-                console.log(this.entryForm);
                 this.loaded = true;
             })
             .catch( error => {
@@ -611,21 +531,13 @@ export default {
                 this.loadRepresentativeData()
                 this.userId = 1;
                 this.loaded = true;
-                console.log("Parece que se cargaron los datos"); 
                 this.loadPreviousEntries();                   
             })
             .catch( error => {
                 alert("No se encuentran los datos.")
             });
         }
-
-                     
-        //this.entryForm.patient = this.patient
-        //this.entryForm.representaive = this.representative      
-        //this.patientName = `${this.patient.firstName} ${this.patient.lastName}`
-        //this.representativeName = `${this.representative.firstName} ${this.representative.lastName}`       
-        //this.patientAge = this.calculateAge(this.patient.birthday)
-        //this.representativeAge = this.calculateAge(this.representative.birthday)       
+     
     }
 }
 

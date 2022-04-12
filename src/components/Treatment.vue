@@ -34,7 +34,7 @@
                     <p>{{ form.id }}</p>
                     <p>{{ form.name }}</p>
                     <p>{{ form.creationDate }}</p>
-                    <p><router-link :to="{ name: 'EntryRecord',  params: { id: patientId, treatmentId: treatmentId, idForm: form.id, existing: true }} ">{{ form.formType }}</router-link></p>
+                    <p><router-link :to="{ name: 'EntryRecord',  params: { id: patientId, treatmentId: treatmentId, idForm: form.id, existing: true }} ">{{ form.formType }}</router-link></p>                    
                 </li>
                 <li>
                     Agregar:
@@ -86,8 +86,10 @@ export default {
     	            this.$router.push( { name: 'EntryRecord',  params: { id: this.patientId, existing: false }});
                     break;
                 case 2:
+    	            this.$router.push( { name: 'SocioeconomicForm',  params: { id: this.patientId, existing: false }});
                     break;
                 case 3:
+                    this.$router.push( { name: 'MedicalForm', params: { id: this.patientId, existing: false }});
                     break;
 
             }

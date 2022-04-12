@@ -59,12 +59,19 @@
 
 
                 <div class="form-line">
+                    <!--
                     <div class="form-field">
-                        <!--Nacionalidad-->
                         <label for="inp-nationality">Nacionalidad:</label>
                         <input name="inp-nationality" type="text" v-model="newPatient.country" required>
-                    </div>                
-
+                    </div>
+                    -->           
+                    <div class="form-field">
+                        <!--Nacionalidad-->
+                        <label for="sel-nationality">Nacionalidad:</label>
+                        <select name="sel-nationality" id="sel-nationality" v-model="newPatient.country" required>
+                            <option v-for="(country, k) in countries" :key="k" :value="country">{{ country }}</option>
+                        </select>
+                    </div> 
 
                     <div class="form-field">
                         <!--Estado civil-->
@@ -78,6 +85,7 @@
                             <option value="Viudo">Viudo</option>
                         </select>
                     </div>
+
 
                 </div>
 
@@ -100,7 +108,7 @@
                     <div class="form-field">
                         <label for="inp-school-level">Último grado terminado:</label>
                         <select name="sel-school-level" id="sel-school-level" v-model.number="newPatient.schoolLevel" required>
-                            <option v-for="(level, k) in allowedLevels" :value="level.value" :key="k">{{ level.name }}</option>                    
+                            <option v-for="(level, k) in allowedLevels" :value="level.value" :key="k">{{ level.name }}</option>
                         </select>
                     </div>                                 
 
@@ -199,12 +207,12 @@
                     </div>
                     <div class="form-field">
                         <!--Calle transversal atrás-->
-                        <label for="inp-cross-street-bw">Calle transversal atrás:</label>
+                        <label for="inp-cross-street-bw">Entre Calle:</label>
                         <input name="inp-cross-street-bw" type="text" v-model="address.crossStreetBackward" required>
                     </div>
                     <div class="form-field">
                         <!--Calle transversal adelante-->
-                        <label for="inp-cross-street-fw">Calle transversal adelante:</label>
+                        <label for="inp-cross-street-fw">Y Calle:</label>
                         <input name="inp-cross-street-fw" type="text" v-model="address.crossStreetForward" required>
                     </div>
                 </div>                    
@@ -325,12 +333,12 @@
                     </div>
                     <div class="form-field">
                         <!--Calle transversal atrás-->
-                        <label for="inp-rep-cross-street-bw">Calle transversal atrás:</label>
+                        <label for="inp-rep-cross-street-bw">Entre Calle:</label>
                         <input name="inp-rep-cross-street-bw" type="text" v-model="representativeAddress.crossStreetBackward" required>
                     </div>
                     <div class="form-field">
                         <!--Calle transversal adelante-->
-                        <label for="inp-rep-cross-street-fw">Calle transversal adelante:</label>
+                        <label for="inp-rep-cross-street-fw">Y Calle:</label>
                         <input name="inp-rep-cross-street-fw" type="text" v-model="representativeAddress.crossStreetForward" required>
                     </div>
                 </div>                    
@@ -383,6 +391,7 @@
             </section>            
         </div>
         <div class="btn-submit" v-on:click="createPatient">Guardar</div>
+        <p id="p-articulo"></p>
     </form>
 </template>
 
@@ -464,14 +473,12 @@ export default {
             allowedLevels: [],
             patientAge: "",
             representativeAge: "",
-            rh: "Negativo"
+            rh: "Negativo",
+            countries: []
 
         }
     },
     methods: {
-        /*updateAge: function() {
-            this.patientAge = utils.calculateAge(this.newPatient.birthday)
-        },*/
         updateAge: function(birthday) {
             let age = utils.calculateAge(birthday)
             return age
@@ -525,19 +532,10 @@ export default {
                         { name: "Quinto año", value: 5}                                                                ]                 
             }
         },
-        loadAddresses: function() {
-
-        },
-        loadPhones: function() {
-
-        },
         addAddress: function() {
             this.addresses.push(this.address);
             this.address = {street: "", number: "", crossStreetBackward: "", crossStreetForward: ""}
             console.log(this.addresses)
-        },
-        addPhone: function() {
-
         },
         createPatient: function() {
             this.newPatient.address = this.address            
@@ -558,77 +556,23 @@ export default {
         },
         toStringAddress(a) {
             return `${a.street} ${a.number} entre ${a.crossStreetBackward} y ${a.crossStreetForward}`
+        },
+        getCountries() {
+            axios
+            .get("https://restcountries.com/v3.1/all")
+            .then(response => {
+                let countryList = response.data;
+                countryList.forEach(country => {
+                    let countryName = country.name.common;
+                    console.log(countryName);
+                    this.countries.push(countryName);                   
+                })
+                this.countries.sort();
+            })
         }
     },
     created: function() {
-        //this.loadAddresses();
-        //this.loadPhones();
-        /*
-        this.representativeAddress = {
-            street: "Avenida Ochenta",
-            number: 500,
-            crossStreetBackward: "San Juan",
-            crossStreetForward: "Colombia",
-            suburb: "Belén",
-            postalCode: "050023",
-            municipality: "Medellín",
-            state: "Antioquia"            
-        }
-        this.representativePhone = {
-            number: "5831361"
-        },
-        this.rh = "Negativo"
-        this.address = {
-            street: "Avenida Ochenta",
-            number: 500,
-            crossStreetBackward: "San Juan",
-            crossStreetForward: "Colombia",
-            suburb: "Belén",
-            postalCode: "050023",
-            municipality: "Medellín",
-            state: "Antioquia"
-        }
-        this.representative = {
-            dni: "32015300",
-            firstName: "Alba Marina",
-            lastName: "Angel Toro",
-            mail: "albamarinaangel@gmail.com",
-            birthday: "",
-            occupation: "Desempleada",
-            relationship: "Madre",
-            phone: this.representativeAddress,
-            address: this.representativePhone
-        }
-        this.newPatient = {
-            dni: 71264076,                
-            firstName: "Mauricio",
-            lastName: "Pineda",
-            mail: "ingmauriciopineda@gmail.com",
-            birthday: "",
-            sex: "Hombre",
-            country: "Colombia",
-            civilState: "Soltero",
-            schoolGrade: "Posgrado",
-            schoolLevel: "1",
-            occupation: "Independiente",
-            salary: 1000000,
-            isInsured: true,
-            provider: "Sura",
-            healthCard: "71264076",
-            religion: "Ateísmo",
-            language: "Español",
-            bloodType: "O",
-            rh: true,
-            phone1: {
-                number: "3017453410"
-            },
-            phone2: {
-                number: "5831361"
-            },
-            address: this.address,
-            representative: this.representative
-        }
-        */
+        this.getCountries();
     }
 }
 </script>
