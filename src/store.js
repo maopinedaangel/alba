@@ -5,8 +5,8 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
     state: {
-        apiUrl: "http://localhost:8000",
-        //apiUrl: "https://api-auriga.herokuapp.com"
+        //apiUrl: "http://localhost:8000",
+        apiUrl: "https://api-auriga.herokuapp.com"
     },
     getters: {
 
