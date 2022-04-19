@@ -50,7 +50,8 @@ const router = new vueRouter({
         {
             path: '/medical-form',
             name: "MedicalForm",
-            component: MedicalForm
+            component: MedicalForm,
+            props: true
         },
         {
             path: '/new-patient',

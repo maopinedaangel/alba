@@ -70,12 +70,12 @@ export default {
 	},
 	methods: {
 		showPatients: function() {
-    		this.$router.push( { name: "Patients" })  
+    		this.$router.push( { name: "Patients" }); 
 		}
 	},
 	beforeCreate: function() {
     	//this.$router.push( { name: "Home" })
-    	this.$router.push( { name: "Patients" }) 		  		
+    	this.$router.push( { name: "Patients" });	  		
 	}
 
 };

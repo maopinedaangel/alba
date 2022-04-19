@@ -34,7 +34,8 @@
                     <p>{{ form.id }}</p>
                     <p>{{ form.name }}</p>
                     <p>{{ form.creationDate }}</p>
-                    <p><router-link :to="{ name: 'EntryRecord',  params: { id: patientId, treatmentId: treatmentId, idForm: form.id, existing: true }} ">{{ form.formType }}</router-link></p>                    
+                    <!--<p><router-link :to="{ name: 'EntryRecord',  params: { id: patientId, treatmentId: treatmentId, idForm: form.id, existing: true }} ">{{ form.formType }}</router-link></p>-->
+                    <p class="p-link" v-on:click="showExistingForm(form.id, form.formType)">{{ form.formType }}</p>                                      
                 </li>
                 <li>
                     Agregar:
@@ -79,17 +80,17 @@ export default {
     },
     methods: {
         createNewForm: function(idFormType) {
-            console.log(idFormType);
+            console.log(`Tipo de formulario: ${idFormType}`);
             switch(idFormType) {
                 case 1:
                     console.log(this.patientId);
-    	            this.$router.push( { name: 'EntryRecord',  params: { id: this.patientId, existing: false }});
+    	            this.$router.push( { name: 'EntryRecord',  params: { id: this.patientId, existing: false, idTreatment: this.treatmentId }});
                     break;
                 case 2:
-    	            this.$router.push( { name: 'SocioeconomicForm',  params: { id: this.patientId, existing: false }});
+    	            this.$router.push( { name: 'SocioeconomicForm',  params: { id: this.patientId, existing: false, idTreatment: this.treatmentId }});
                     break;
                 case 3:
-                    this.$router.push( { name: 'MedicalForm', params: { id: this.patientId, existing: false }});
+                    this.$router.push( { name: 'MedicalForm', params: { id: this.patientId, existing: false, idTreatment: this.treatmentId }});
                     break;
 
             }
@@ -110,6 +111,18 @@ export default {
             .catch(err => {
                 alert("Error al cargar los formularios.")
             }) 
+        },
+        showExistingForm: function(formId, formType) {
+            let formComponent = "";
+            switch(formType) {
+                case "Nota de Ingreso":
+                    formComponent = "EntryRecord";
+                    break;
+                case "Historia Clínica":
+                    formComponent = "MedicalForm";
+                    break;
+            }
+            this.$router.push({ name: formComponent,  params: { id: this.patientId, treatmentId: this.treatmentId, idForm: formId, existing: true }})
         }
     },
     created: function() {
@@ -205,5 +218,9 @@ export default {
 #div-treatment {
     margin-top: 3rem;
     /*background-color: yellow;*/
+}
+.p-link {
+    cursor: pointer;
+    text-decoration: underline;
 }
 </style>
