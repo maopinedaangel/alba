@@ -14,6 +14,20 @@
     --clr-highlight-object: rgb(243, 52, 186);  
 }
 
+/*Text styles*/
+h1, h2, h3, h4 {
+    margin-top: 2rem;
+    margin-bottom: 2rem
+}
+
+h1 {
+    color: #000000;
+}
+
+label {
+    color: #000000;
+}
+
 /*Form styles*/
 
 .div-form {

@@ -354,10 +354,11 @@ import utils from '../utils.js'
 export default {
     name: 'EntryRecord',
     //props: ['id', 'existing', 'idForm', 'treatmentId', 'patientdata', 'representativedata'],
-    props: ['id', 'existing', 'idForm', 'treatmentId'],    
+    props: ['id', 'existing', 'idForm', 'idTreatment'],    
     data: function() {
         return {
             formId: this.idForm,
+            treatmentId: this.idTreatment,
             loaded: false,
             userId: "",
             patient: "",
@@ -430,6 +431,7 @@ export default {
                 data: JSON.stringify(this.entryForm),
                 userId: this.userId
             }
+            console.log(formData);            
             let url = this.$store.state.apiUrl;
             url += "/form";
             axios

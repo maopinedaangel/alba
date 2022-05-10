@@ -2,11 +2,17 @@
   <div id="app">
     <div id="div-header">
 		<!--<div id="div-login">-->
-		<router-link id="div-login" :to="{name:'Login'}">			
+		<router-link class="div-login" :to="{name:'Login'}">			
 			<div>
 				Acceder
 			</div>
 		</router-link>
+		<div class="div-login">
+			<div v-on:click="logout">
+				Salir
+			</div>
+		</div>
+
 		<!--</div>	-->	
     </div>
     <div id="div-main">
@@ -56,6 +62,7 @@ import IconDoctor from './components/icons/IconDoctor.vue'
 import IconFile from './components/icons/IconFile.vue'
 import IconReport from './components/icons/IconReport.vue'
 import IconMan from './components/icons/IconMan.vue'
+import axios from 'axios'
 
 export default {
 	name: "App",
@@ -71,11 +78,27 @@ export default {
 	methods: {
 		showPatients: function() {
     		this.$router.push( { name: "Patients" }); 
+		},
+		logout: function() {
+			this.$store.dispatch("authLogout")
+			.then(() => {
+				this.$router.push("/login");
+			})
 		}
 	},
 	beforeCreate: function() {
-    	//this.$router.push( { name: "Home" })
-    	this.$router.push( { name: "Patients" });	  		
+    	//this.$router.push( { name: "Patients" });
+    	this.$router.push( { name: "Login" });			 		
+	},
+	created: function() {
+		axios.interceptors.response.use(undefined, function(err) {
+			return new Promise(function(resolve, reject) {
+				if (err.status === 401 && err.config && !err.config.__isRetryRequest) {
+					this.$store.dispatch("authLogout");
+				}
+				throw err;
+			})
+		})
 	}
 
 };
@@ -94,14 +117,14 @@ export default {
 	display: flex;
 	justify-content: flex-end;
 }
-#div-login {
+.div-login {
 	display: flex;
 	align-items: center;
 	margin-right: 1vw;
 	cursor: pointer;
 	color: #ffffff;
 }
-#div-login a {
+.div-login a {
 	text-decoration: none;
 }
 #div-main {

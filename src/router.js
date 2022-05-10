@@ -1,4 +1,5 @@
 import vueRouter from 'vue-router'
+import store from './store'
 
 import Home from './components/Home'
 import Patients from './components/Patients'
@@ -8,6 +9,24 @@ import EntryRecord from './components/EntryRecord'
 import NewPatient from './components/NewPatient'
 import SocioeconomicForm from './components/SocioeconomicForm'
 import Login from './components/Login'
+
+
+const ifNotAuthenticated = (to, from, next) => {
+    if (!store.getters.isAuthenticated) {
+        next();
+        return;
+    }
+    next("/");
+}
+
+const ifAuthenticated = (to, from, next) => {
+    if(store.getters.isAuthenticated) {
+        next();
+        return;
+    }
+    next("login");
+}
+
 
 const router = new vueRouter({
     mode: 'history',
@@ -22,12 +41,14 @@ const router = new vueRouter({
         {
             path: '/login',
             name: "Login",
-            component: Login
+            component: Login,
+            beforeEnter: ifNotAuthenticated
         },
         {
             path: '/patients',
             name: "Patients",
-            component: Patients
+            component: Patients,
+            beforeEnter: ifAuthenticated
         },
         {
             path: '/history/:id',

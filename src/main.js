@@ -7,6 +7,7 @@ import store from './store'
 
 import App from './App'
 import router from './router'
+import axios from 'axios'
 require('@/assets/css/style.css')
 require('./utils.js')
 
@@ -14,6 +15,11 @@ require('./utils.js')
 Vue.config.productionTip = false
 Vue.use(vueRouter);
 Vue.use(Vuex);
+
+const token = localStorage.getItem("user-token");
+if (token) {
+  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+}
 
 /* eslint-disable no-new */
 new Vue({
