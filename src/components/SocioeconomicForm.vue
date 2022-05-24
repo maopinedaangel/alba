@@ -2,7 +2,7 @@
     <div class="div-form" id="socio-economic-form">
         <div v-if="loaded">
             <h1>Estudio Socioeconómico</h1>
-            <form>
+            <form v-on:change="calculateTotalScore">
                 <section class="form-section" id="sec-header">
                     <!--Encabezado-->
                     <div class="form-line">
@@ -131,7 +131,7 @@
 
                 <section class="form-section" id="sec-economic-conditions">
                     <h3>Condiciones económicas:</h3>
-                    <div id="table-income-expenses">
+                    <div id="table-income-expenses" v-on:change="calculateIncome">
                                                                                             
                         <div class="div-table" id="div-income">
                             <div class="row-div-table">                        
@@ -140,19 +140,19 @@
                             </div>
                             <div class="row-div-table">                                      
                                 <label>Jefe/a de familia</label>
-                                <input type="number" v-model.number="form.familyBossIncome">
+                                <input type="text" v-model.number="form.familyBossIncome">
                             </div>
                             <div class="row-div-table">                        
                                 <label>Esposo/a</label>
-                                <input type="number" v-model.number="form.spouseIncome">
+                                <input type="text" v-model.number="form.spouseIncome">
                             </div>
                             <div class="row-div-table">                        
                                 <label>Hijo/a</label>
-                                <input type="number" v-model.number="form.childrenIncome">
+                                <input type="text" v-model.number="form.childrenIncome">
                             </div>
                             <div class="row-div-table">                        
                                 <label>Otros</label>                    
-                                <input type="number" v-model.number="form.othersIncome">
+                                <input type="text" v-model.number="form.othersIncome">
                             </div>
                             <div class="row-div-table">                        
                                 <label class="highlighted-text">Total</label>
@@ -163,58 +163,58 @@
                                 <input type="number" v-model.number="form.nMembers">
                             </div>                                         
                         </div>               
-                        <div class="div-table" id="div-expenses">
+                        <div class="div-table" id="div-expenses" v-on:change="calculateExpenses">
                             <div class="row-div-table">                        
                                 <h4>Desglose de Gastos</h4>
                                 <h4>Egreso Mensual</h4>
                             </div>
                             <div class="row-div-table">                                                   
                                 <label>Alimentación/Despensa</label>
-                                <input type="number" v-model.number="form.foodExpenses">
+                                <input type="text" v-model.number="form.foodExpenses">
                             </div>
                             <div class="row-div-table">                        
                                 <label>Renta/Hipoteca</label>
-                                <input type="number" v-model.number="form.rentExpenses">
+                                <input type="text" v-model.number="form.rentExpenses">
                             </div>
                             <div class="row-div-table">                        
                                 <label>Predio</label>
-                                <input type="number" v-model.number="form.propertyExpenses">
+                                <input type="text" v-model.number="form.propertyExpenses">
                             </div>
                             <div class="row-div-table">                        
                                 <label>Agua</label>
-                                <input type="number" v-model.number="form.waterSupplyExpenses">
+                                <input type="text" v-model.number="form.waterSupplyExpenses">
                             </div>
                             <div class="row-div-table">                        
                                 <label>Luz</label>
-                                <input type="number" v-model.number="form.electricityExpenses">
+                                <input type="text" v-model.number="form.electricityExpenses">
                             </div>
                             <div class="row-div-table">                            
                                 <label>Gas</label>
-                                <input type="number" v-model.number="form.gasExpenses">
+                                <input type="text" v-model.number="form.gasExpenses">
                             </div>
                             <div class="row-div-table"> 
                                 <label>Teléfono</label>                                                   
-                                <input type="number" v-model.number="form.phoneExpenses">
+                                <input type="text" v-model.number="form.phoneExpenses">
                             </div>
                             <div class="row-div-table">
                                 <label>Gastos Escolares</label>                                                        
-                                <input type="number" v-model.number="form.schoolExpenses">
+                                <input type="text" v-model.number="form.schoolExpenses">
                             </div>
                             <div class="row-div-table">
                                 <label>Gastos en Salud</label>
-                                <input type="number" v-model.number="form.healthExpenses">
+                                <input type="text" v-model.number="form.healthExpenses">
                             </div>
                             <div class="row-div-table">                                                              
                                 <label>Transporte</label>
-                                <input type="number" v-model.number="form.transportationExpenses">
+                                <input type="text" v-model.number="form.transportationExpenses">
                             </div>
                             <div class="row-div-table">                        
                                 <label>Servicios Domésticos</label>
-                                <input type="number" v-model.number="form.domesticWorkExpenses">
+                                <input type="text" v-model.number="form.domesticWorkExpenses">
                             </div>
                             <div class="row-div-table">                        
                                 <label>Consumos Adicionales</label>
-                                <input type="number" v-model.number="form.otherExpenses">
+                                <input type="text" v-model.number="form.otherExpenses">
                             </div>
                             <div class="row-div-table">                                                       
                                 <label class="highlighted-text">Total</label>
@@ -254,9 +254,9 @@
                     <div class="div-table">
                         <table class="form-table">
                             <tr>
-                                <th>Grupo</th>
+                                <th class="column-small">Grupo</th>
                                 <th>Tipo de vivienda</th>
-                                <th>Puntos</th>
+                                <th class="column-small">Puntos</th>
                             </tr>
                             <tr v-for="(type, k) in housingTypes" :key="k">
                                 <td>
@@ -275,7 +275,7 @@
                         <div class="form-field-full-line">
                             <label>Servicios públicos:</label>
                         </div>
-                        <div class="div-inline-checks">                           
+                        <div class="div-inline-checks" v-on:change="updatePublicServicesPoints">                           
                             <label for="check-public-services-1">
                                 <input type="checkbox" id="check-public-services-1" value="Alumbrado público" v-model="form.publicServices">
                                 Alumbrado público
@@ -299,7 +299,7 @@
                         <div class="form-field-full-line">
                             <label>Servicios intradomiciliarios:</label>
                         </div>
-                        <div class="div-inline-checks">                           
+                        <div class="div-inline-checks" v-on:change="updateInternalServicesPoints">                           
                             <label for="check-internal-services-1">
                                 <input type="checkbox" id="check-internal-services-1" value="Alumbrado público" v-model="form.internalServices">
                                 Alumbrado público
@@ -383,7 +383,7 @@
                     <div class="form-line">                
                         <div class="form-field">
                             <label for="inp-diagnostic">Diagnóstico médico del paciente:</label>
-                            <input name="inp-diagnostic" type="text" required>                         
+                            <input name="inp-diagnostic" type="text" v-model="form.diagnostic" required>                         
                         </div>
                     </div>
                     <div class="form-line">                    
@@ -472,49 +472,49 @@
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>¿Cómo se siente en relación a su familia?:</label>
-                            <textarea required></textarea><br>
+                            <textarea v-model="form.feelingsAboutFamily" required></textarea><br>
                         </div>
                     </div>
 
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>¿Cómo cree que su familia se siente con usted?:</label>
-                            <textarea required></textarea><br>
+                            <textarea v-model="form.familyFeelings" required></textarea><br>
                         </div>
                     </div>
 
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>¿Qué cree que necesita mejorar su familia?:</label>
-                            <textarea required></textarea><br>
+                            <textarea v-model="form.familyNeedsToImprove" required></textarea><br>
                         </div>
                     </div>
 
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>¿Qué cree usted que necesita mejorar con respecto a su familia?:</label>
-                            <textarea required></textarea><br>
+                            <textarea v-model="form.patientNeedsToImprove" required></textarea><br>
                         </div>
                     </div>
 
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>¿Con quién de su familia suele tener diferencias?:</label>
-                            <textarea required></textarea><br>
+                            <textarea v-model="form.hasDisagreementsWith" required></textarea><br>
                         </div>
                     </div>
 
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>¿Con quién de su familia suele llevar a cabo acuerdos?:</label>
-                            <textarea required></textarea><br>
+                            <textarea v-model="form.hasAgreementsWith" required></textarea><br>
                         </div>
                     </div>
 
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>Diagnóstico Social:</label>
-                            <textarea required></textarea><br>
+                            <textarea v-model="form.socialDiagnostic" required></textarea><br>
                         </div>
                     </div>                                                           
                 </section>
@@ -523,11 +523,29 @@
                     <div class="form-line">
                         <div class="form-field">
                             <label>Total de puntos: {{ form.totalScore }}</label>
-                            <textarea required></textarea><br>
                         </div>
+                        <div class="form-field">
+                            <label>Nivel de Estudio socioeconómico: {{ form.socioeconomicLevel }}</label>
+                        </div>                        
                     </div>
+                    <div class="form-line">
+                        <div class="form-field-full-line">
+                            <label>Nombre y firma del entrevistado/a:</label>
+                            <input name="inp-interviewee" type="text" v-model="form.interviwee" required>                             
+                        </div>                      
+                    </div>
+                    <div class="form-line">
+                        <div class="form-field-triple">
+                            <label>Nombre y firma del profesional en trabajo social:</label>
+                            <input name="inp-social-worker" type="text" v-model="form.socialWorker" required>
+                        </div>
+                        <div class="form-field-triple">
+                            <label>Cédula profesional:</label>
+                            <input name="inp-professional-card" type="text" v-model="form.professionalCard" required>
+                        </div>                                             
+                    </div>                                         
                 </section>            
-
+                <div class="btn-submit" v-on:click="saveForm">Guardar</div>  
             </form>
         </div>
         <div v-else>Obteniendo datos...</div>                     
@@ -541,10 +559,11 @@ import utils from '../utils.js'
 export default {
     name: 'SocioEconomicForm',
     //props: ['existing', 'patientdata', 'representativedata'],
-    props: ['id', 'existing', 'idForm', 'treatmentId'],
+    props: ['id', 'existing', 'idForm', 'idTreatment'],
     data: function() {
         return {
             formId: this.idForm,
+            treatmentId: this.idTreatment,            
             loaded: false,
             userId: "",
             patient: "",
@@ -615,6 +634,7 @@ export default {
                 historyCode: "",
                 service: "",
                 date: "",
+                diagnostic: "",
                 illnessDuration: "",
                 otherDiseases: "",
                 disease: "",
@@ -623,7 +643,9 @@ export default {
                 possessionType: "",
                 housingType: "",
                 publicServices: [],
+                publicServicesPoints: 0,
                 internalServices: [],
+                internalServicesPoints: 0,
                 constructionMaterial: "",
                 bedrooms: "",
                 personsByBedroom: "",            
@@ -631,6 +653,7 @@ export default {
                 spouseIncome: 0,
                 childrenIncome: 0,
                 othersIncome: 0,
+                totalIncome: 0,
                 nMembers: 0,
                 foodExpenses: 0,
                 rentExpenses: 0,
@@ -643,11 +666,25 @@ export default {
                 healthExpenses: 0,
                 transportationExpenses: 0,
                 domesticWorkExpenses: 0,
-                otherExpenses: 0,                
+                otherExpenses: 0,
+                totalExpenses: 0,
+                totalScore: 0,
+                feelingsAboutFamily: "",
+                familyFeelings: "",
+                familyNeedsToImprove: "",
+                patientNeedsToImprove: "",
+                hasDisagreementsWith: "",
+                hasAgreementsWith: "",
+                socialDiagnostics: "",
+                socioEconomicLevel: "",
+                interviewee: "",
+                socialWorker: "",
+                professionalCard: ""
             }
         }
     },
     computed: {
+        /*
         publicServicesPoints: function() {
             let nServices = this.form.publicServices.length;
             return nServices === 0 ? 0: nServices - 1;
@@ -656,6 +693,8 @@ export default {
             let nServices = this.form.internalServices.length;
             return nServices === 0 ? 0: nServices - 1;
         },
+        */
+        /*
         totalScore: function() {
             let points = 0;
             points += this.form.possessionType + this.form.housingType + this.form.publicServicesPoints + this.form.internalServicesPoints
@@ -663,11 +702,15 @@ export default {
             points += this.form.illnessDuration + this.form.otherDiseases + this.form.familyCondition
             return points
         },
+        */
+        /*
         totalIncome: function() {
             let total = 0;
             total += this.form.familyBossIncome + this.form.spouseIncome + this.form.childrenIncome + this.form.othersIncome;                     
             return total;
         },
+        */
+       /*
         totalExpenses: function() {
             let total = 0;
             total += this.form.foodExpenses + this.form.rentExpenses + this.form.propertyExpenses + this.form.waterSupplyExpenses;
@@ -675,10 +718,30 @@ export default {
             total += this.form.transportationExpenses + this.form.domesticWorkExpenses + this.form.otherExpenses;
             return total;
         }
+        */
     },
     methods: {
         calculateAge: function(birthday) {
             return utils.calculateAge(birthday);
+        },
+        updatePublicServicesPoints: function() {
+            console.log(this.form.publicServices);
+            let nServices = this.form.publicServices.length;
+            this.form.publicServicesPoints = nServices === 0 ? 0: nServices - 1;
+        },
+        updateInternalServicesPoints: function() {
+            console.log(this.form.internalServices);            
+            let nServices = this.form.internalServices.length;
+            this.form.internalServicesPoints = nServices === 0 ? 0: nServices - 1;
+        },
+        calculateIncome: function() {
+            this.form.totalIncome = this.form.familyBossIncome + this.form.spouseIncome + this.form.childrenIncome + this.form.othersIncome; 
+        },
+        calculateExpenses: function() {
+            this.form.totalExpenses = this.form.foodExpenses + this.form.rentExpenses + this.form.propertyExpenses + this.form.waterSupplyExpenses + this.form.electricityExpenses + this.form.gasExpenses + this.form.phoneExpenses + this.form.schoolExpenses + this.form.healthExpenses + this.form.transportationExpenses + this.form.domesticWorkExpenses + this.form.otherExpenses;
+        },
+        calculateTotalScore: function() {
+            this.form.totalScore = this.form.possessionType + this.form.housingType + this.form.publicServicesPoints + this.form.internalServicesPoints + this.form.constructionMaterial + this.form.bedrooms + this.form.personsByBedroom + this.form.illnessDuration + this.form.otherDiseases + this.form.familyCondition
         },
         getPatient: function() {
             let url = this.$store.state.apiUrl;
@@ -716,7 +779,27 @@ export default {
             this.form.representative.address = this.representative.address
             this.form.representative.phone = this.representative.phones[0]
             console.log(this.representative.phone);                      
-        },        
+        },
+        saveForm: function() {
+            let formData = {
+                treatmentId: this.treatmentId,
+                formTypeId: 2,
+                data: JSON.stringify(this.form),
+                userId: this.userId
+            }
+            console.log(formData);            
+            let url = this.$store.state.apiUrl;
+            url += "/form";
+            axios
+            .post(url, formData)            
+            .then(response => {
+                alert("El formulario ha sido guardado.");
+                this.loaded = true;
+            })
+            .catch(err => {
+                alert("Se presentó un error al intentar guardar el formulario.");
+            })        
+        }      
     },
     beforeCreate: function() {
         this.patientId = this.$route.params.id;
@@ -776,6 +859,9 @@ export default {
     width: 80%;
     margin-left: auto;
     margin-right: auto;
+}
+.column-small {
+    min-width: 200px; 
 }
 .row-div-table {
     display: flex;

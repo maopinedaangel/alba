@@ -118,6 +118,9 @@ export default {
                 case "Nota de Ingreso":
                     formComponent = "EntryRecord";
                     break;
+                case "Estudio Socioeconómico":
+                    formComponent = "SocioeconomicForm";
+                    break;                    
                 case "Historia Clínica":
                     formComponent = "MedicalForm";
                     break;
