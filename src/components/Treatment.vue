@@ -35,33 +35,45 @@
                     <p>{{ form.name }}</p>
                     <p>{{ form.creationDate }}</p>
                     <!--<p><router-link :to="{ name: 'EntryRecord',  params: { id: patientId, treatmentId: treatmentId, idForm: form.id, existing: true }} ">{{ form.formType }}</router-link></p>-->
-                    <p class="p-link" v-on:click="showExistingForm(form.id, form.formType)">{{ form.formType }}</p>                                      
+                    <p
+                        class="p-link"
+                        v-on:click="showExistingForm(form.id, form.formType)">
+                        {{ form.formType }}
+                    </p>
                 </li>
                 <li>
                     Agregar:
-                    <select name="sel-form-type" id="sel-form-type" v-model="newEntryTypeId">
-                        <option v-for="(entryType, k) in entryTypes" :key="k" :value="entryType.id">{{ entryType.name }}</option>
+                    <select
+                        name="sel-form-type"
+                        id="sel-form-type"
+                        v-model="newEntryTypeId">
+                        <option
+                            v-for="(entryType, k) in entryTypes"
+                            :key="k"
+                            :value="entryType.id">
+                            {{ entryType.name }}
+                        </option>
                     </select>
-                    <button v-on:click="createNewForm(newEntryTypeId)">Agregar</button>                 
+                    <button v-on:click="createNewForm(newEntryTypeId)">
+                        Agregar
+                    </button>
                 </li>
-
             </ul>
         </div>
     </div>
-
 </template>
 
 
 <script>
-import Collapsible from './Collapsible.vue'
-import axios from 'axios'
+import Collapsible from "./Collapsible.vue";
+import axios from "axios";
 export default {
-    name: 'Treatment',
+    name: "Treatment",
     components: {
-        Collapsible
+        Collapsible,
     },
-    props: ['id', 'idPatient'],
-    data: function() {
+    props: ["id", "idPatient"],
+    data: function () {
         return {
             treatmentId: this.id,
             /*medicals: [],
@@ -74,61 +86,101 @@ export default {
             representative: "",
             entryTypes: [],
             newEntryTypeId: "",
-            formsLoaded: false
-        }
-
+            formsLoaded: false,
+        };
     },
     methods: {
-        createNewForm: function(idFormType) {
-            console.log(`Tipo de formulario: ${idFormType}`);
-            switch(idFormType) {
+        createNewForm: function (idFormType) {
+            //console.log(`Tipo de formulario: ${idFormType}`);
+            switch (idFormType) {
                 case 1:
-                    console.log(this.patientId);
-    	            this.$router.push( { name: 'EntryRecord',  params: { id: this.patientId, existing: false, idTreatment: this.treatmentId }});
+                    //console.log(this.patientId);
+                    this.$router.push({
+                        name: "EntryRecord",
+                        params: {
+                            id: this.patientId,
+                            existing: false,
+                            idTreatment: this.treatmentId,
+                        },
+                    });
                     break;
                 case 2:
-    	            this.$router.push( { name: 'SocioeconomicForm',  params: { id: this.patientId, existing: false, idTreatment: this.treatmentId }});
+                    this.$router.push({
+                        name: "SocioeconomicForm",
+                        params: {
+                            id: this.patientId,
+                            existing: false,
+                            idTreatment: this.treatmentId,
+                        },
+                    });
                     break;
                 case 3:
-                    this.$router.push( { name: 'MedicalForm', params: { id: this.patientId, existing: false, idTreatment: this.treatmentId }});
+                    this.$router.push({
+                        name: "MedicalForm",
+                        params: {
+                            id: this.patientId,
+                            existing: false,
+                            idTreatment: this.treatmentId,
+                        },
+                    });
                     break;
-
+                case 4:
+                    this.$router.push({
+                        name: "PsychologicalForm",
+                        params: {
+                            id: this.patientId,
+                            existing: false,
+                            idTreatment: this.treatmentId,
+                        },
+                    });
+                    break;
             }
         },
-        loadForms: function() {
-            let url = this.$store.state.apiUrl
-            url += "/forms"
-            console.log(url);
-            console.log(this.treatmentId);          
+        loadForms: function () {
+            let url = this.$store.state.apiUrl;
+            url += "/forms";
+            //console.log(url);
+            //console.log(this.treatmentId);
             axios
-            .get(url, { params: { id: this.treatmentId }})
-            .then(response => {
-                this.forms = response.data;
-                console.log(this.forms.length)
-                //this.patientId = this.forms[0].patientId;
-                this.formsLoaded = true;
-            })
-            .catch(err => {
-                alert("Error al cargar los formularios.")
-            }) 
+                .get(url, { params: { id: this.treatmentId } })
+                .then(response => {
+                    this.forms = response.data;
+                    //console.log(this.forms.length)
+                    //this.patientId = this.forms[0].patientId;
+                    this.formsLoaded = true;
+                })
+                .catch(err => {
+                    alert("Error al cargar los formularios.");
+                });
         },
-        showExistingForm: function(formId, formType) {
+        showExistingForm: function (formId, formType) {
             let formComponent = "";
-            switch(formType) {
+            switch (formType) {
                 case "Nota de Ingreso":
                     formComponent = "EntryRecord";
                     break;
                 case "Estudio Socioeconómico":
                     formComponent = "SocioeconomicForm";
-                    break;                    
+                    break;
                 case "Historia Clínica":
                     formComponent = "MedicalForm";
                     break;
+                case "Historia Psicológica":
+                    formComponent = "PsychologicalForm";
+                    break;
             }
-            this.$router.push({ name: formComponent,  params: { id: this.patientId, treatmentId: this.treatmentId, idForm: formId, existing: true }})
-        }
+            this.$router.push({
+                name: formComponent,
+                params: {
+                    id: this.patientId,
+                    treatmentId: this.treatmentId,
+                    idForm: formId,
+                    existing: true,
+                },
+            });
+        },
     },
-    created: function() {
+    created: function () {
         /*
         this.medicals = [
             {
@@ -175,13 +227,17 @@ export default {
             },
             {
                 id: 2,
-                name: "Estudio Socioeconómico"
+                name: "Estudio Socioeconómico",
             },
             {
                 id: 3,
-                name: "Historia Clínica"
-            }
-        ]
+                name: "Historia Clínica",
+            },
+            {
+                id: 4,
+                name: "Historia Psicológica",
+            },
+        ];
         console.log(`id del paciente: ${this.patientId}`);
         this.loadForms();
         /*
@@ -209,10 +265,8 @@ export default {
             alert("No se encuentra el representante.")
         })
         */
-
-
-    }
-}
+    },
+};
 </script>
 
 

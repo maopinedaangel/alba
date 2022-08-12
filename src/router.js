@@ -3,8 +3,10 @@ import store from './store'
 
 import Home from './components/Home'
 import Patients from './components/Patients'
+import Diseases from './components/Diseases'
 import History from './components/History'
 import MedicalForm from './components/MedicalForm'
+import PsychologicalForm from './components/PsychologicalForm'
 import EntryRecord from './components/EntryRecord'
 import NewPatient from './components/NewPatient'
 import SocioeconomicForm from './components/SocioeconomicForm'
@@ -51,6 +53,12 @@ const router = new vueRouter({
             beforeEnter: ifAuthenticated
         },
         {
+            path: '/diseases',
+            name: "Diseases",
+            component: Diseases,
+            beforeEnter: ifAuthenticated
+        },
+        {
             path: '/history/:id',
             name: "History",
             component: History,
@@ -75,9 +83,16 @@ const router = new vueRouter({
             props: true
         },
         {
+            path: '/psychological-form',
+            name: "PsychologicalForm",
+            component: PsychologicalForm,
+            props: true
+        },        
+        {
             path: '/new-patient',
             name: "NewPatient",
-            component: NewPatient
+            component: NewPatient,
+            props: true
         }
     ]
 })

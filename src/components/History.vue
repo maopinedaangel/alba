@@ -3,19 +3,31 @@
         <div id="div-profile">
             <h1>Perfil del paciente</h1>
             <div id="div-photo">
-                <img class="img-profile" src="../assets/img/person.png" alt="Foto Paciente">
+                <img
+                    class="img-profile"
+                    src="../assets/img/person.png"
+                    alt="Foto Paciente" />
             </div>
             <div id="div-data">
                 <p>Nombre: {{ patient.firstName }} {{ patient.lastName }}</p>
-                <p>Edad: {{ calculateAge(patient.birthday) }} </p>
+                <p>Edad: {{ calculateAge(patient.birthday) }}</p>
                 <p>No. Expediente: {{ patient.code }}</p>
                 <p>Ocupación: {{ patient.occupation }}</p>
+                <router-link
+                    :to="{ name: 'NewPatient', params: { id: this.patientId } }"
+                    >Ver información general</router-link
+                >
             </div>
         </div>
         <div id="div-treatment">
             <h2>Historial de tratamientos</h2>
-            <Treatment v-for="(treatment, k) in treatments" :key="k" :id="treatment.id" :idPatient="patientId" />                    
+            <Treatment
+                v-for="(treatment, k) in treatments"
+                :key="k"
+                :id="treatment.id"
+                :idPatient="patientId" />
         </div>
+
         <!--
         <div v-if="patientLoaded">
             <div v-for="(treatment, k) in treatments" :key="k">
@@ -25,72 +37,74 @@
             </div>
         </div>
         -->
-
     </div>
 </template>
 
 
 <script>
-import Treatment from './Treatment.vue'
-import axios from 'axios'
-import utils from '../utils.js'
+import Treatment from "./Treatment.vue";
+import axios from "axios";
+import utils from "../utils.js";
 export default {
-    name: 'History',
-    props: ['id'],
+    name: "History",
+    props: ["id"],
     components: {
-        Treatment
+        Treatment,
     },
-    data: function() {
+    data: function () {
         return {
             //patientId: this.id,
             patientId: "",
             patient: "",
             patientLoaded: false,
-            treatments: []
-        }
+            treatments: [],
+        };
     },
     methods: {
-        calculateAge: function(birthday) {
-            return utils.calculateAge(birthday)
+        calculateAge: function (birthday) {
+            return utils.calculateAge(birthday);
         },
-        loadPatientData: function() {
+        loadPatientData: function () {
             let url = this.$store.state.apiUrl;
             url += "/patient-data/" + this.patientId;
-            console.log("Id para la petición: " + this.patientId);
+            //console.log("Id para la petición: " + this.patientId);
             axios
-            .get(url)
-            .then(response => {
-                this.patient = response.data;              
-                this.loadTreatments();
-                console.log("Ejecutando loadPatientData");
-            })
-            .catch(err => {
-                console.log("Se presentó un error al intentar consultar la historia.")
-            })
+                .get(url)
+                .then(response => {
+                    this.patient = response.data;
+                    this.loadTreatments();
+                    //console.log("Ejecutando loadPatientData");
+                })
+                .catch(err => {
+                    console.log(
+                        "Se presentó un error al intentar consultar la historia."
+                    );
+                });
         },
-        loadTreatments: function() {
+        loadTreatments: function () {
             let url = this.$store.state.apiUrl;
             url += "/patient-treatments/" + this.patient.historyId;
-            console.log(url);
+            //console.log(url);
             axios
-            .get(url)            
-            .then(response => {
-                this.treatments = response.data;
-                console.log("¿Cuántos tratamientos? " + this.treatments.length);
-                this.patientLoaded = true;                 
-            })
-            .catch(err => {
-                console.log("Se presentó un error al intentar consultar la historia.");
-            })
-        }
+                .get(url)
+                .then(response => {
+                    this.treatments = response.data;
+                    //console.log("¿Cuántos tratamientos? " + this.treatments.length);
+                    this.patientLoaded = true;
+                })
+                .catch(err => {
+                    console.log(
+                        "Se presentó un error al intentar consultar la historia."
+                    );
+                });
+        },
     },
-    created: function() {
+    created: function () {
         this.patientId = this.$route.params.id;
-        console.log("id recibido: " + this.patientId);        
+        console.log("id recibido: " + this.patientId);
         this.loadPatientData();
-    }
-
-}
+    },
+};
 </script>
 
 
