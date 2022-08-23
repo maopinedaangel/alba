@@ -1,6 +1,8 @@
 <template>
     <div class="div-form" id="div-medical-form">
         <div v-if="loaded">
+            <!--<header-form />-->
+
             <h1>Historia Clínica Médica</h1>
             <form>
                 <section id="sec-general">
@@ -48,7 +50,6 @@
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <textarea v-model="form.currentCondition.disease" required></textarea>
-                            <br />
                         </div>
                     </div>
                     <div class="form-line">
@@ -56,7 +57,6 @@
                             <!--current-treatments-->
                             <label>¿Estás siendo atendido por algún problema de salud en la actualidad? ¿Cuál?</label>
                             <textarea v-model="form.currentCondition.treatment" required></textarea>
-                            <br />
                         </div>
                     </div>
                     <div class="form-line">
@@ -67,31 +67,29 @@
                                 ¿Cuál?:
                             </label>
                             <textarea v-model="form.currentCondition.medicine" required></textarea>
-                            <br />
                         </div>
                     </div>
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>Factores desencadenantes:</label>
                             <textarea v-model="form.currentCondition.triggers" required></textarea>
-                            <br />
                         </div>
                     </div>
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>Evolución:</label>
                             <textarea v-model="form.currentCondition.evolution" required></textarea>
-                            <br />
                         </div>
                     </div>
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>Estado actual (incluir datos de patrón de consumo, abstinencia):</label>
                             <textarea v-model="form.currentCondition.state" required></textarea>
-                            <br />
                         </div>
                     </div>
                 </section>
+
+                <div class="html2pdf__page-break" />
 
                 <!--Antecedentes-->
                 <section id="sec-background" v-on:change="printDiseases">
@@ -178,7 +176,11 @@
                                 required />
                         </div>
                     </div>
+                </section>
 
+                <div class="html2pdf__page-break" />
+
+                <section>
                     <h3>Personales patológicos</h3>
 
                     <div class="form-line">
@@ -314,119 +316,114 @@
 
                 <!--Pendiente G P A C-->
 
-                <h4>Alto riesgo</h4>
-                <div class="form-line">
-                    <div class="form-field-full-line">
-                        <textarea v-model="form.highRisk" required></textarea>
-                        <br />
+                <section>
+                    <h4>Alto riesgo</h4>
+                    <div class="form-line">
+                        <div class="form-field-full-line">
+                            <textarea v-model="form.highRisk" required></textarea>
+                        </div>
                     </div>
-                </div>
+                </section>
 
-                <h4>Psicobiografía</h4>
+                <div class="html2pdf__page-break" />
 
-                <div class="form-line">
-                    <div class="form-field-full-line">
-                        <!--Embarazo, parto y desarrollo psicomotor-->
-                        <label>Embarazo, parto y desarrollo psicomotor</label>
-                        <textarea v-model="form.psychobiography.pregnancyAndBirth" required></textarea>
-                        <br />
+                <section>
+                    <h4>Psicobiografía</h4>
+
+                    <div class="form-line">
+                        <div class="form-field-full-line">
+                            <!--Embarazo, parto y desarrollo psicomotor-->
+                            <label>Embarazo, parto y desarrollo psicomotor</label>
+                            <textarea v-model="form.psychobiography.pregnancyAndBirth" required></textarea>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-line">
-                    <div class="form-field-full-line">
-                        <!--Núcleo familiar, personalidad de padres y hermanos; y relación-->
-                        <label>Núcleo familiar, personalidad de padres y hermanos; y relación</label>
-                        <textarea v-model="form.psychobiography.familyNucleus" required></textarea>
-                        <br />
+                    <div class="form-line">
+                        <div class="form-field-full-line">
+                            <!--Núcleo familiar, personalidad de padres y hermanos; y relación-->
+                            <label>Núcleo familiar, personalidad de padres y hermanos; y relación</label>
+                            <textarea v-model="form.psychobiography.familyNucleus" required></textarea>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-line">
-                    <div class="form-field-full-line">
-                        <!--Escolaridad, grado máximo de estudios, rendimiento escolar-->
-                        <label>Escolaridad, grado máximo de estudios, rendimiento escolar</label>
-                        <textarea v-model="form.psychobiography.education" required></textarea>
-                        <br />
+                    <div class="form-line">
+                        <div class="form-field-full-line">
+                            <!--Escolaridad, grado máximo de estudios, rendimiento escolar-->
+                            <label>Escolaridad, grado máximo de estudios, rendimiento escolar</label>
+                            <textarea v-model="form.psychobiography.education" required></textarea>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-line">
-                    <div class="form-field-full-line">
-                        <!--Vida laboral, inicio, motivos, progreso, sedimentación, gratificaciones-->
-                        <label>Vida laboral, inicio, motivos, progreso, sedimentación, gratificaciones</label>
-                        <textarea v-model="form.psychobiography.work" required></textarea>
-                        <br />
+                    <div class="form-line">
+                        <div class="form-field-full-line">
+                            <!--Vida laboral, inicio, motivos, progreso, sedimentación, gratificaciones-->
+                            <label>Vida laboral, inicio, motivos, progreso, sedimentación, gratificaciones</label>
+                            <textarea v-model="form.psychobiography.work" required></textarea>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-line">
-                    <div class="form-field-full-line">
-                        <!--Vida sexual, grado de información, experiencias, hábitos, masturbación, preferencia-->
-                        <label>
-                            Vida sexual, grado de información, experiencias, hábitos, masturbación, preferencia
-                        </label>
-                        <textarea v-model="form.psychobiography.sexualLife" required></textarea>
-                        <br />
+                    <div class="form-line">
+                        <div class="form-field-full-line">
+                            <!--Vida sexual, grado de información, experiencias, hábitos, masturbación, preferencia-->
+                            <label>
+                                Vida sexual, grado de información, experiencias, hábitos, masturbación, preferencia
+                            </label>
+                            <textarea v-model="form.psychobiography.sexualLife" required></textarea>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-line">
-                    <div class="form-field-full-line">
-                        <!--Vida de pareja, matrimonio, personalidad del cónyuge e hijos/as-->
-                        <label>Vida de pareja, matrimonio, personalidad del cónyuge e hijos/as</label>
-                        <textarea v-model="form.psychobiography.intimateRelationship" required></textarea>
-                        <br />
+                    <div class="form-line">
+                        <div class="form-field-full-line">
+                            <!--Vida de pareja, matrimonio, personalidad del cónyuge e hijos/as-->
+                            <label>Vida de pareja, matrimonio, personalidad del cónyuge e hijos/as</label>
+                            <textarea v-model="form.psychobiography.intimateRelationship" required></textarea>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-line">
-                    <div class="form-field-full-line">
-                        <!--Vida social: intereses recreativos, artísticos, deportivos, culturales y religiosos-->
-                        <label>
-                            Vida social: intereses recreativos, artísticos, deportivos, culturales y religiosos
-                        </label>
-                        <textarea v-model="form.psychobiography.socialLife" required></textarea>
-                        <br />
+                    <div class="form-line">
+                        <div class="form-field-full-line">
+                            <!--Vida social: intereses recreativos, artísticos, deportivos, culturales y religiosos-->
+                            <label>
+                                Vida social: intereses recreativos, artísticos, deportivos, culturales y religiosos
+                            </label>
+                            <textarea v-model="form.psychobiography.socialLife" required></textarea>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-line">
-                    <div class="form-field-full-line">
-                        <!--Legales, conflictos, antecedentes penales-->
-                        <label>Legales, conflictos, antecedentes penales</label>
-                        <textarea v-model="form.psychobiography.criminalRecord" required></textarea>
-                        <br />
+                    <div class="form-line">
+                        <div class="form-field-full-line">
+                            <!--Legales, conflictos, antecedentes penales-->
+                            <label>Legales, conflictos, antecedentes penales</label>
+                            <textarea v-model="form.psychobiography.criminalRecord" required></textarea>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-line">
-                    <div class="form-field-full-line">
-                        <!--Familiares con drogadicción o alcoholismo. Parentesco, sustancia y conflictos-->
-                        <label>Familiares con drogadicción o alcoholismo. Parentesco, sustancia y conflictos</label>
-                        <textarea v-model="form.psychobiography.substanceUseByRelatives" required></textarea>
-                        <br />
+                    <div class="html2pdf__page-break" />
+
+                    <div class="form-line">
+                        <div class="form-field-full-line">
+                            <!--Familiares con drogadicción o alcoholismo. Parentesco, sustancia y conflictos-->
+                            <label>Familiares con drogadicción o alcoholismo. Parentesco, sustancia y conflictos</label>
+                            <textarea v-model="form.psychobiography.substanceUseByRelatives" required></textarea>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-line">
-                    <div class="form-field-full-line">
-                        <!--En el último año ¿en cuántas ocasiones estuvo en hospital por esa causa?-->
-                        <label>En el último año ¿en cuántas ocasiones estuvo en hospital por esa causa?</label>
-                        <textarea v-model="form.psychobiography.hospitalAdmissions" required></textarea>
-                        <br />
+                    <div class="form-line">
+                        <div class="form-field-full-line">
+                            <!--En el último año ¿en cuántas ocasiones estuvo en hospital por esa causa?-->
+                            <label>En el último año ¿en cuántas ocasiones estuvo en hospital por esa causa?</label>
+                            <textarea v-model="form.psychobiography.hospitalAdmissions" required></textarea>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-line">
-                    <div class="form-field-full-line">
-                        <!--Describa la condición en la que llegó y qué medidas en el hospital-->
-                        <label>Describa la condición en la que llegó y qué medidas en el hospital</label>
-                        <textarea v-model="form.psychobiography.conditionOnAdmission" required></textarea>
-                        <br />
+                    <div class="form-line">
+                        <div class="form-field-full-line">
+                            <!--Describa la condición en la que llegó y qué medidas en el hospital-->
+                            <label>Describa la condición en la que llegó y qué medidas en el hospital</label>
+                            <textarea v-model="form.psychobiography.conditionOnAdmission" required></textarea>
+                        </div>
                     </div>
-                </div>
-
+                </section>
                 <!--Interrogatorio por aparatos y sistemas-->
                 <section id="sec-systems">
                     <h3>Interrogatorio por aparatos y sistemas</h3>
@@ -437,7 +434,6 @@
                                 anexos y otros. Recabar información relacionada con uso de sustancias.
                             </label>
                             <textarea v-model="form.systemsExamination" required></textarea>
-                            <br />
                         </div>
                     </div>
                 </section>
@@ -501,6 +497,8 @@
                             <input name="inp-pulse" type="text" v-model="form.vitalSigns.pulse" required />
                         </div>
                     </div>
+
+                    <div class="html2pdf__page-break" />
 
                     <h4>Exploración Físico-Neurológica</h4>
 
@@ -636,6 +634,8 @@
                     </div>
                 </section>
 
+                <div class="html2pdf__page-break" />
+
                 <!--Exámenes de laboratorio, gabinete y otros previos y actuales-->
                 <section id="sec-lab-exam">
                     <h4>Exámenes de laboratorio, gabinete y otros previos y actuales</h4>
@@ -643,7 +643,6 @@
                         <div class="form-field-full-line">
                             <label>Enumeración, fechas y resultados</label>
                             <textarea v-model="form.laboratoryTests" required></textarea>
-                            <br />
                         </div>
                     </div>
                 </section>
@@ -656,31 +655,29 @@
                         <div class="form-field-full-line">
                             <label>Tratamientos físicos</label>
                             <textarea v-model="form.therapy.physical" required></textarea>
-                            <br />
                         </div>
                     </div>
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>Farmacológicos</label>
                             <textarea v-model="form.therapy.pharmacological" required></textarea>
-                            <br />
                         </div>
                     </div>
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>Psicoterapéuticos</label>
                             <textarea v-model="form.therapy.psychotherapy" required></textarea>
-                            <br />
                         </div>
                     </div>
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>Alternativos</label>
                             <textarea v-model="form.therapy.alternative" required></textarea>
-                            <br />
                         </div>
                     </div>
                 </section>
+
+                <div class="html2pdf__page-break" />
 
                 <!--Examen mental-->
                 <section id="sec-mental">
@@ -693,7 +690,6 @@
                                 autismo)
                             </label>
                             <textarea v-model="form.mentalExamination.generalInspection" required></textarea>
-                            <br />
                         </div>
                     </div>
 
@@ -705,7 +701,6 @@
                                 delirios
                             </label>
                             <textarea v-model="form.mentalExamination.languageAndThought" required></textarea>
-                            <br />
                         </div>
                     </div>
 
@@ -716,7 +711,6 @@
                                 análisis, síntesis, conación, volición, juicio crítico
                             </label>
                             <textarea v-model="form.mentalExamination.intellectualFunctions" required></textarea>
-                            <br />
                         </div>
                     </div>
 
@@ -727,7 +721,6 @@
                                 ambivalencia, disociación
                             </label>
                             <textarea v-model="form.mentalExamination.affectivity" required></textarea>
-                            <br />
                         </div>
                     </div>
 
@@ -738,7 +731,6 @@
                                 micropsias, extrañeza
                             </label>
                             <textarea v-model="form.mentalExamination.perception" required></textarea>
-                            <br />
                         </div>
                     </div>
 
@@ -746,7 +738,6 @@
                         <div class="form-field-full-line">
                             <label>Ideación, delirios, proyecto futuro, sueño, conciencia de enfermedad</label>
                             <textarea v-model="form.mentalExamination.ideation" required></textarea>
-                            <br />
                         </div>
                     </div>
 
@@ -754,10 +745,11 @@
                         <div class="form-field-full-line">
                             <label>Observaciones:</label>
                             <textarea v-model="form.mentalExamination.remarks" required></textarea>
-                            <br />
                         </div>
                     </div>
                 </section>
+
+                <div class="html2pdf__page-break" />
 
                 <!--Impresión diagnóstica-->
                 <section id="sec-diagnostic">
@@ -787,7 +779,6 @@
                         <div class="form-field-full-line">
                             <label>Observaciones al Diagnóstico y/o Problemas Clínicos:</label>
                             <textarea v-model="form.diagnostic.remarks" required></textarea>
-                            <br />
                         </div>
                     </div>
 
@@ -796,17 +787,17 @@
                         <div class="form-field-full-line">
                             <label>Para la vida:</label>
                             <textarea v-model="form.prognosis.forLife" required></textarea>
-                            <br />
                         </div>
                     </div>
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>Para la función:</label>
                             <textarea v-model="form.prognosis.forFunction" required></textarea>
-                            <br />
                         </div>
                     </div>
                 </section>
+
+                <div class="html2pdf__page-break" />
 
                 <!--Tratamiento sugerido y justificación-->
                 <section id="sec-suggested-treatment">
@@ -856,7 +847,6 @@
                         <div class="form-field-full-line">
                             <label>Justificación</label>
                             <textarea v-model="form.suggestedTreatment.justification" required></textarea>
-                            <br />
                         </div>
                     </div>
 
@@ -867,7 +857,6 @@
                                 periodicidad)
                             </label>
                             <textarea v-model="form.suggestedTreatment.physicalHandling" required></textarea>
-                            <br />
                         </div>
                     </div>
 
@@ -875,7 +864,6 @@
                         <div class="form-field-full-line">
                             <label>Sugerencias en el plan de manejo psicológico</label>
                             <textarea v-model="form.suggestedTreatment.psychologicalHandling" required></textarea>
-                            <br />
                         </div>
                     </div>
 
@@ -925,6 +913,9 @@
                         </div>
                     </div>
                 </section>
+
+                <div class="html2pdf__page-break" />
+
                 <div class="btn-submit" v-on:click="saveMedicalForm">Guardar</div>
             </form>
         </div>
@@ -936,8 +927,12 @@
 <script>
 import axios from "axios";
 import utils from "../utils";
+import HeaderForm from "./HeaderForm.vue";
 export default {
     name: "MedicalForm",
+    components: {
+        HeaderForm,
+    },
     props: ["id", "existing", "idForm", "idTreatment"],
     data: function () {
         return {
@@ -1162,23 +1157,24 @@ export default {
         loadPatientData: function () {
             let url = this.$store.state.apiUrl;
             url += "/patient-data/" + this.patientId;
+            return axios.get(url);
+            /*
             axios
                 .get(url)
+                
                 .then(response => {
                     this.patient = response.data;
-                    //console.log(this.patient);
                     this.form.patient.name = `${this.patient.firstName} ${this.patient.lastName}`;
-                    //console.log(this.form.patient.name);
                     this.form.patient.birthday = this.patient.birthday;
                     this.form.patient.age = this.calculateAge(this.patient.birthday);
                     this.form.patient.sex = this.patient.sex;
                     this.form.historyNumber = this.patient.code;
-                    //console.log(this.form.historyNumber);
                     this.loaded = true;
                 })
                 .catch(err => {
                     alert("Error al tratar de recuperar los datos del paciente");
                 });
+                */
         },
     },
     beforeCreate: function () {
@@ -1186,8 +1182,13 @@ export default {
         this.isExisting = this.$route.params.existing;
     },
     created: function () {
+        /* Revisar */
+        /*
         this.patientId = this.$route.params.id;
         this.isExisting = this.$route.params.existing;
+        */
+
+        console.log(this.patientId);
         /*
         setTimeout(() => {
             this.loaded = true;
@@ -1208,7 +1209,19 @@ export default {
                     alert("No se encuentran los datos.");
                 });
         } else {
-            this.loadPatientData();
+            this.loadPatientData()
+                .then(response => {
+                    this.patient = response.data;
+                    this.form.patient.name = `${this.patient.firstName} ${this.patient.lastName}`;
+                    this.form.patient.birthday = this.patient.birthday;
+                    this.form.patient.age = this.calculateAge(this.patient.birthday);
+                    this.form.patient.sex = this.patient.sex;
+                    this.form.historyNumber = this.patient.code;
+                    this.loaded = true;
+                })
+                .catch(err => {
+                    alert("Error al tratar de recuperar los datos del paciente");
+                });
             this.userId = 1;
             //console.log(`id Paciente: ${this.patientId}`);
         }

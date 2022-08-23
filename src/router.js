@@ -4,13 +4,17 @@ import store from './store'
 import Home from './components/Home'
 import Patients from './components/Patients'
 import Diseases from './components/Diseases'
+import Docs from './components/Docs'
 import History from './components/History'
+import Users from "./components/Users"
 import MedicalForm from './components/MedicalForm'
 import PsychologicalForm from './components/PsychologicalForm'
 import EntryRecord from './components/EntryRecord'
 import NewPatient from './components/NewPatient'
 import SocioeconomicForm from './components/SocioeconomicForm'
 import Login from './components/Login'
+import ResetPassword from './components/ResetPassword'
+
 
 
 const ifNotAuthenticated = (to, from, next) => {
@@ -47,6 +51,12 @@ const router = new vueRouter({
             beforeEnter: ifNotAuthenticated
         },
         {
+            path: '/reset-password',
+            name: "ResetPassword",
+            component: ResetPassword,
+            props: true
+        },          
+        {
             path: '/patients',
             name: "Patients",
             component: Patients,
@@ -58,6 +68,16 @@ const router = new vueRouter({
             component: Diseases,
             beforeEnter: ifAuthenticated
         },
+        {
+            path: '/docs',
+            name: "Docs",
+            component: Docs
+        },
+        {
+            path: '/users',
+            name: "Users",
+            component: Users
+        },        
         {
             path: '/history/:id',
             name: "History",

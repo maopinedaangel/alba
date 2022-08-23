@@ -1,15 +1,12 @@
 <template>
     <div id="app">
         <div id="div-header">
-            <!--<div id="div-login">-->
             <router-link class="div-login" :to="{ name: 'Login' }">
                 <div>Acceder</div>
             </router-link>
             <div class="div-login">
                 <div v-on:click="logout">Salir</div>
             </div>
-
-            <!--</div>	-->
         </div>
         <div id="div-main">
             <div id="div-side-menu">
@@ -27,12 +24,12 @@
                     </div>
                     Especialistas
                 </div>
-                <div class="bt-options">
+                <router-link class="bt-options" :to="{ name: 'Docs' }">
                     <div class="div-icon">
                         <icon-base class="icon-menu" id="ic-file" icon-name="file"><icon-file /></icon-base>
                     </div>
                     Documentos
-                </div>
+                </router-link>
                 <router-link class="bt-options" :to="{ name: 'Diseases' }">
                     <div class="div-icon">
                         <icon-base class="icon-menu" id="ic-report" icon-name="report"><icon-report /></icon-base>
@@ -40,18 +37,18 @@
                     Reportes
                 </router-link>
                 <!--
-			<div class="bt-options">
-                <div class="div-icon">
-                    <icon-base class="icon-menu" id="ic-report" icon-name="report"><icon-report /></icon-base>
-                </div>				
-				Reportes</div>
-			-->
-                <div class="bt-options">
+                    <div class="bt-options">
+                        <div class="div-icon">
+                            <icon-base class="icon-menu" id="ic-report" icon-name="report"><icon-report /></icon-base>
+                        </div>				
+                        Reportes</div>
+                    -->
+                <router-link class="bt-options" :to="{ name: 'Users' }">
                     <div class="div-icon">
                         <icon-base class="icon-menu" id="ic-login" icon-name="login"><icon-login /></icon-base>
                     </div>
                     Usuarios
-                </div>
+                </router-link>
             </div>
             <div id="div-center">
                 <router-view :key="$route.fullPath"></router-view>

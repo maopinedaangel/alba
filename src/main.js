@@ -8,6 +8,8 @@ import store from './store'
 import App from './App'
 import router from './router'
 import axios from 'axios'
+//import IconBase from "./components/IconBase.vue"
+//import IconPrint from "./components/icons/IconPrint"
 require('@/assets/css/style.css')
 require('./utils.js')
 
@@ -15,6 +17,8 @@ require('./utils.js')
 Vue.config.productionTip = false
 Vue.use(vueRouter);
 Vue.use(Vuex);
+//Vue.component("IconBase", IconBase);
+//Vue.component("IconPrint", IconPrint);
 
 const token = localStorage.getItem("user-token");
 if (token) {

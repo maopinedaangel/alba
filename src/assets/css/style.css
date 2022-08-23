@@ -16,12 +16,13 @@
 
 /*Text styles*/
 h1, h2, h3, h4 {
-    margin-top: 2rem;
-    margin-bottom: 2rem
+    margin-top: 2em;
+    margin-bottom: 1.5em
 }
 
 h1 {
     color: #000000;
+    text-align: center;
 }
 
 label {
@@ -38,19 +39,18 @@ label {
 
 .div-form h1 {
     text-align: center;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
 }
 
 .div-form section {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    border: 1px solid #dddddd;
-    padding: 1rem;
-    padding-top: 2rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    /*border: 1px solid #dddddd;*/
+    padding: 0.1rem 0.5rem 0rem 0.5rem;
 }
 
 .form-line {
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     margin-bottom: 1rem;
     display: flex;
     flex-wrap: wrap;
@@ -61,7 +61,7 @@ label {
     width: 25%;
     padding-left: 1rem;
     padding-right: 1rem;
-    min-width: 200px;
+    /*min-width: 200px;*/
     /*background-color: yellow;*/
 }
 
@@ -191,4 +191,6 @@ label {
     margin-bottom: 1rem;
     text-align: center;
     cursor: pointer;
+    border-radius: 5px;
+    border: none;
 }

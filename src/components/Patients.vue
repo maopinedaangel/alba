@@ -5,14 +5,10 @@
             <div class="btn-menu"><p>Buscar</p></div>
             <div class="btn-menu" v-on:click="createPatient"><p>Agregar</p></div>
         </div>
-        <div class="tab" id="tab-all-patients">
-            <div
-                class="card-patient"
-                v-for="(patient, k) in patients"
-                :key="k"
-                v-on:click="showPatient(patient.patientId)">
-                <img class="img-patient" src="../assets/img/person.png" alt="Foto Paciente" />
-                <div class="patient-data">
+        <div class="div-list">
+            <div class="card" v-for="(patient, k) in patients" :key="k" v-on:click="showPatient(patient.patientId)">
+                <img src="../assets/img/person.png" alt="Foto Paciente" />
+                <div>
                     <p class="p-name">{{ patient.firstName }} {{ patient.lastName }}</p>
                     <p>Edad: {{ calculateAge(patient.birthday) }}</p>
                     <p>No. Expediente: {{ patient.code }}</p>
@@ -81,27 +77,25 @@ li:nth-child(odd) {
 li:nth-child(even) {
     background-color: var(--clr-light-background);
 }
-.tab {
-    display: flex;
-}
-#tab-all-patients {
+.div-list {
     display: flex;
     flex-wrap: wrap;
 }
-.card-patient {
+
+.card {
     display: flex;
     width: 26vw;
     margin: 2vw;
     cursor: pointer;
 }
-.img-patient {
+.card img {
     width: 100px;
     height: 100px;
 }
-.patient-data {
+.card div {
     padding: 1rem;
 }
-.p-name {
+.card .p-name {
     font-size: 21px;
     font-weight: bold;
 }

@@ -46,7 +46,6 @@
                         <div class="form-field-full-line">
                             <label>¿Qué o quién lo motivó a ingresar?</label>
                             <textarea v-model="form.reasonsToConsult.encouragedBy" required></textarea>
-                            <br />
                         </div>
                     </div>
                     <div class="form-line">
@@ -56,24 +55,23 @@
                                 drogas?
                             </label>
                             <textarea v-model="form.reasonsToConsult.beginningOfUse" required></textarea>
-                            <br />
                         </div>
                     </div>
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>Descripción física al momento de la entrevista:</label>
                             <textarea v-model="form.reasonsToConsult.physicalDescription" required></textarea>
-                            <br />
                         </div>
                     </div>
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>¿Cuál es la droga de impacto?:</label>
                             <textarea v-model="form.reasonsToConsult.impactDrug" required></textarea>
-                            <br />
                         </div>
                     </div>
                 </section>
+
+                <div class="html2pdf__page-break" />
 
                 <section id="sec-family-history">
                     <h2>Historia familiar</h2>
@@ -81,66 +79,59 @@
                         <div class="form-field-full-line">
                             <label>¿Con quién vive y cómo es el ambiente allí?</label>
                             <textarea v-model="form.familyHistory.liveWith" required></textarea>
-                            <br />
                         </div>
                     </div>
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>Nombre del padre. ¿Quá ha significado en su vida? ¿Cuál es su relación?</label>
                             <textarea v-model="form.familyHistory.father" required></textarea>
-                            <br />
                         </div>
                     </div>
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>Ocupación:</label>
                             <textarea v-model="form.familyHistory.fatherOccupation" required></textarea>
-                            <br />
                         </div>
                     </div>
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>Nombre de la madre. ¿Quá ha significado en su vida? ¿Cuál es su relación?</label>
                             <textarea v-model="form.familyHistory.mother" required></textarea>
-                            <br />
                         </div>
                     </div>
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>Ocupación:</label>
                             <textarea v-model="form.familyHistory.motherOccupation" required></textarea>
-                            <br />
                         </div>
                     </div>
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>¿Cómo es su relación con sus hermanos? ¿Qué puesto ocupa entre ellos?</label>
                             <textarea v-model="form.familyHistory.siblings" required></textarea>
-                            <br />
                         </div>
                     </div>
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>¿Tiene o ha tenido pareja? ¿Cómo ha sido su relación?</label>
                             <textarea v-model="form.familyHistory.spouse" required></textarea>
-                            <br />
                         </div>
                     </div>
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>Número de hijos y explique: ¿Cómo es la relación con ellos?</label>
                             <textarea v-model="form.familyHistory.children" required></textarea>
-                            <br />
                         </div>
                     </div>
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>¿Cuál ha sido la persona más significativa en su vida? ¿Por qué?</label>
                             <textarea v-model="form.familyHistory.mostImportantPerson" required></textarea>
-                            <br />
                         </div>
                     </div>
                 </section>
+
+                <div class="html2pdf__page-break" />
 
                 <section id="sec-personal-history">
                     <h2>Historia personal</h2>
@@ -148,7 +139,6 @@
                         <div class="form-field-full-line">
                             <label>¿Qué eventos importantes, significativos recuerda de su adolescencia?</label>
                             <textarea v-model="form.personalHistory.significantEvents" required></textarea>
-                            <br />
                         </div>
                     </div>
                     <div class="form-line">
@@ -175,23 +165,19 @@
                         <div class="form-field-full-line">
                             <label>¿Ha prometido a algún familiar que dejará de consumir? ¿En cuántas ocasiones?</label>
                             <textarea v-model="form.personalHistory.promisesToStopUsingDrugs" required></textarea>
-                            <br />
                         </div>
                     </div>
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>¿Qué resultados ha obtenido?</label>
                             <textarea v-model="form.personalHistory.results" required></textarea>
-                            <br />
                         </div>
                     </div>
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>Dos razones importantes por las que decide dejar de consumir drogas</label>
                             <textarea v-model="form.personalHistory.firstReasonToStopUsingDrugs" required></textarea>
-                            <br />
                             <textarea v-model="form.personalHistory.secondReasonToStopUsingDrugs" required></textarea>
-                            <br />
                         </div>
                     </div>
                     <div class="form-line">
@@ -201,10 +187,11 @@
                                 dosis y quién recetó.
                             </label>
                             <textarea v-model="form.personalHistory.medicine" required></textarea>
-                            <br />
                         </div>
                     </div>
                 </section>
+
+                <div class="html2pdf__page-break" />
 
                 <section id="sec-general">
                     <h2>Historia laboral</h2>
@@ -222,14 +209,12 @@
                         <div class="form-field-full-line">
                             <label>¿En qué otra actividad laboral se ha desempeñado?</label>
                             <textarea v-model="form.workHistory.otherWorkActivities" required></textarea>
-                            <br />
                         </div>
                     </div>
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>¿Cómo se ha sentido en estas actividades laborales?</label>
                             <textarea v-model="form.workHistory.feelingsAboutWork" required></textarea>
-                            <br />
                         </div>
                     </div>
                 </section>
@@ -240,38 +225,35 @@
                         <div class="form-field-full-line">
                             <label>¿Cómo se ha relacionado socialmente?</label>
                             <textarea v-model="form.socialHistory.socialRelationship" required></textarea>
-                            <br />
                         </div>
                     </div>
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>¿Han cambiado sus relaciones sociales posteriores al consumo?</label>
                             <textarea v-model="form.socialHistory.changesInSocialRelationship" required></textarea>
-                            <br />
                         </div>
                     </div>
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>¿Qupe relaciones positivas conserva? Explique.</label>
                             <textarea v-model="form.socialHistory.positiveRelationships" required></textarea>
-                            <br />
                         </div>
                     </div>
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>¿Ha vivido en la calle? ¿Cuánto tiempo? ¿Cómo ha sido esta experiencia?</label>
                             <textarea v-model="form.socialHistory.lifeOnTheStreet" required></textarea>
-                            <br />
                         </div>
                     </div>
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>¿Qué cosas o actividades le divierten más?</label>
                             <textarea v-model="form.socialHistory.funActivities" required></textarea>
-                            <br />
                         </div>
                     </div>
                 </section>
+
+                <div class="html2pdf__page-break" />
 
                 <section id="sec-drugs-use-history">
                     <h2>Historia de consumo</h2>
@@ -282,21 +264,18 @@
                                 relacionarse con el inicio o aumento del consumo?
                             </label>
                             <textarea v-model="form.drugsUseHistory.relatedEvents" required></textarea>
-                            <br />
                         </div>
                     </div>
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>¿Qué podría usted determinar como pérdidas durante el tiempo de consumo?</label>
                             <textarea v-model="form.drugsUseHistory.losses" required></textarea>
-                            <br />
                         </div>
                     </div>
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>¿Qué personas cercanas se vieron afectadas por su consumo? ¿De qué manera?</label>
                             <textarea v-model="form.drugsUseHistory.peopleAffected" required></textarea>
-                            <br />
                         </div>
                     </div>
                     <div class="form-line">
@@ -305,28 +284,24 @@
                                 ¿Ha estado en tratamientos anteriores? ¿Último establecimiento? ¿Cuánto tiempo?
                             </label>
                             <textarea v-model="form.drugsUseHistory.previousTreatments" required></textarea>
-                            <br />
                         </div>
                     </div>
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>¿Qué espera de este tratamiento?</label>
                             <textarea v-model="form.drugsUseHistory.expectationsAboutTreatment" required></textarea>
-                            <br />
                         </div>
                     </div>
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>¿Qué quiere ser en el futuro?</label>
                             <textarea v-model="form.drugsUseHistory.lifeGoals" required></textarea>
-                            <br />
                         </div>
                     </div>
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>¿Qué debe hacer para lograrlo?</label>
                             <textarea v-model="form.drugsUseHistory.plansToMeetGoals" required></textarea>
-                            <br />
                         </div>
                     </div>
                     <div class="form-line">
@@ -364,20 +339,20 @@
                     </div>
                 </section>
 
+                <div class="html2pdf__page-break" />
+
                 <section id="sec-legal-history">
                     <h2>Historia legal</h2>
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>¿Tiene antecedentes delictivos? ¿De qué tipo?</label>
                             <textarea v-model="form.legalHistory.criminalBackground" required></textarea>
-                            <br />
                         </div>
                     </div>
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>¿Cómo conseguía el dinero para consumir?</label>
                             <textarea v-model="form.legalHistory.sourceOfMoneyForDrugs" required></textarea>
-                            <br />
                         </div>
                     </div>
                 </section>
@@ -388,24 +363,23 @@
                         <div class="form-field-full-line">
                             <label>Observaciones:</label>
                             <textarea v-model="form.observations.remarks" required></textarea>
-                            <br />
                         </div>
                     </div>
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>Comportamiento durante la entrevista:</label>
                             <textarea v-model="form.observations.behaviorDuringInterview" required></textarea>
-                            <br />
                         </div>
                     </div>
                     <div class="form-line">
                         <div class="form-field-full-line">
                             <label>RESULTADOS DE PRUEBAS APLICADAS:</label>
                             <textarea v-model="form.observations.testsResults" required></textarea>
-                            <br />
                         </div>
                     </div>
                 </section>
+
+                <div class="html2pdf__page-break" />
 
                 <section id="sec-diagnosis">
                     <h2>Diagnóstico presuntivo</h2>
@@ -414,7 +388,6 @@
                             <label>Señale el tipo de diagnóstico al momento de la evaluación (CIE-10):</label>
                             <CIE v-on:add-diagnosis="addDiagnosis" />
                             <textarea v-model="form.diagnosis.diagnosis" required></textarea>
-                            <br />
                         </div>
                     </div>
 
@@ -459,7 +432,6 @@
                         <div class="form-field-full-line">
                             <label>Plan de tratamiento:</label>
                             <textarea v-model="form.diagnosis.treatmentPlan" required></textarea>
-                            <br />
                         </div>
                     </div>
                 </section>
@@ -481,6 +453,9 @@
                         </div>
                     </div>
                 </section>
+
+                <div class="html2pdf__page-break" />
+
                 <div class="btn-submit" v-on:click="saveForm">Guardar</div>
             </form>
         </div>
@@ -493,11 +468,13 @@
 import axios from "axios";
 import utils from "../utils";
 import CIE from "./CIE.vue";
+import Printer from "./Printer.vue";
 export default {
     name: "PsychologialForm",
     props: ["id", "existing", "idForm", "idTreatment"],
     components: {
         CIE,
+        Printer,
     },
     data: function () {
         return {
@@ -688,8 +665,10 @@ export default {
     },
     created: function () {
         //this.loaded = true;
+        /*
         this.patientId = this.$route.params.id;
         this.isExisting = this.$route.params.existing;
+        */
         setInterval(this.getNow, 1000);
         if (this.isExisting) {
             let url = this.$store.state.apiUrl;
